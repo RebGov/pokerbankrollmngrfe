@@ -1,27 +1,28 @@
 import React, { Component } from 'react';
-// import './App.css';
-import { BrowserRouter, Switch, Route } from  'react-router-dom'
-import SignIn from './SignIn';
-import SignUp from './SignUp';
-import Home from './Home';
+import logo from './logo.svg';
+import './App.css';
 
 class App extends Component {
-  // comonentDidMount(){
-  //   this.props.getUserData()
-  // }
   render() {
-
     return (
-      <BrowserRouter>
-        <Switch>
-        <Route path="/login" component={SignIn}/>
-        <Route path='/createAccount' component={SignUp}/>
-        <Route path="/" component={Home}/>
-        </Switch>
-      </BrowserRouter>
+      <div className="App">
+        <header className="App-header">
+          <img src={logo} className="App-logo" alt="logo" />
+          <p>
+            Edit <code>src/App.js</code> and save to reload.
+          </p>
+          <a
+            className="App-link"
+            href="https://reactjs.org"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Learn React
+          </a>
+        </header>
+      </div>
     );
   }
 }
-//need to send handleChange and handleSubmit to both signIn and signUp pages.
 
 export default App;
