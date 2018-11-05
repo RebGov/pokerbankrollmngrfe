@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 // import './App.css';
 import { connect } from 'react-redux';
-import SignUp from './SignUp';
-import AllGames from './AllGames'
+import SignUp from '../components/SignUp';
+import AllGames from '../components/AllGames'
 // import { Link } from 'react-router-dom';
-import {getUserData} from './actions/userActions'
+import {getUserData} from '../actions/userActions'
 
 class Home extends Component {
   componentDidMount(){

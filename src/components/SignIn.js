@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { Redirect} from 'react-router-dom';
-import { loginUser, updateCurrentUser } from './actions/userActions'
+import { loginUser, updateCurrentUser } from '../actions/userActions'
 
 class SignIn extends Component {
 

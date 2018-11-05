@@ -1,9 +1,10 @@
 1) create master
 3) create masterBecci
 - .gitignore add list-branches-order-notes.md
-4) beginfe:
+4) beginfe: 88d2781
 - home signin signup authenticate user
-5)
+5)beginfe: 1d3c2de
+
 
 
 notes
