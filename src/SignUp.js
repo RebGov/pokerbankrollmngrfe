@@ -9,10 +9,6 @@ class SignUp extends Component {
       <div>
         <h1>Sign Up</h1>
         <div>
-          <label>Username: </label>
-          <input onChange={e => this.props.updateCurrentUser({ username: e.target.value })} type="text"/>
-        </div>
-        <div>
           <label>Email: </label>
           <input onChange={e => this.props.updateCurrentUser({ email: e.target.value })} type="email"/>
         </div>
@@ -48,9 +44,9 @@ const mapDispatchToProps = (dispatch) => {
               payload: userAttributes
           })
       },
-      loginUser(){
+      createUser(){
           dispatch({
-              type: 'ATTEMPT_TO_LOGIN_USER'
+              type: 'CREATE_NEW_USER'
           })
       }
   }

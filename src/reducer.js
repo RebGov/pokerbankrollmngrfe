@@ -37,41 +37,17 @@ const reducer = (currentState = defaultState, action) => {
         .then( resp => resp.json())
         .then( payload => store.dispatch({ type: 'LOGIN_USER', payload: payload}) )
     break;
-    // case 'GET_USER_GAME_DATA':
-    //  newState.jwt = action.payload.jwt
-    //  localStorage.setItem('jwt', JSON.stringify(newState.jwt))
-    //     // const jwt = localStorage.jwt
-    //     // if(jwt){
-    //     fetch('http://localhost:300/api/v1/profile', {
-    //       method: 'GET',
-    //       headers: {
-    //         Authorization: `Bearer ${newState.jwt}`
-    //       }
-    //     })
-    //       .then(resp => resp.json())
-    //       .then(payload =>
-    //         // if(!payload.error){
-    //           store.dispatch({ type: 'LOGIN_USER', payload: payload}))
-    //         // }
-    //    // }
-    // break;
-    // case 'JWT_TOKEN':
-    //   // newState.currentUser = action.payload.user
-    //
-    //   // localStorage.setItem('currentUser', JSON.stringify(newState.currentUser))
-    //
-    //   store.dispatch({type: 'GET_USER_PROFILE_AND_GAME_DATA', payload: newState.jwt})
-    //   //notes change items in backend to = user/jwt
-    // break;
+    case 'GET_USER_GAME_DATA':
+      newState.currentUser = action.payload.user
+      localStorage.setItem('currentUser', JSON.stringify(newState.currentUser))
+    break;
     case 'LOGIN_USER':
-    newState.currentUser = action.payload.user
-    newState.jwt = action.payload.jwt
-    localStorage.setItem('currentUser', JSON.stringify(newState.currentUser))
-    localStorage.setItem('jwt', JSON.stringify(newState.jwt))
-
+      // newState.currentUser = action.payload.user
+      newState.jwt = action.payload.jwt
+      localStorage.setItem('jwt', JSON.stringify(newState.jwt))
     break;
     default:
-  
+
     break;
    }//end switch
   return newState

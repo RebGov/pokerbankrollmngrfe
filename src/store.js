@@ -1,5 +1,6 @@
-import { createStore } from 'redux';
-import {reducer} from './reducer';
+import { createStore, applyMiddleware, compose } from 'redux';
+import thunk from 'redux-thunk'
+import rootReducer from './reducers/rootReducer';
 
 let currentUser;
 try {
@@ -7,23 +8,36 @@ try {
 }catch(err){
   currentUser={
     email: '',
-    username: '',
-    firstName: '',
-    lastName: '',
+    first_name: '',
+    last_name: '',
     password: '',
-    playedGames: {}
+    read_and_accept_terms_of_service: false,
+    played_games: []
   }
 }
 const defaultState = {
   jwt: localStorage.jwt || false,
   newUser: {
     email: '',
-    username: '',
-    firstName: '',
+    first_name: '',
     last_name: '',
     password: ''
   },
-  currentUser: currentUser
+  currentUser: currentUser,
+  userPlayedGames: currentUser.played_games,
+  newUserGame: {
+    user_id: '',
+    start_date_time: '',
+    end_date_time: '',
+    buy_in: '',
+    cash_out: '',
+    game_location_id: '',
+    game_name_id: '',
+    tournament: '',
+    profit: '',
+    minutes: '',
+    won_game: ''
+  }
   // //new items to lists persist
   // newGame: {},
   // newBlindsName:'',
@@ -44,9 +58,13 @@ const defaultState = {
 }
 
 
+const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+const enhancer = composeEnhancers(
+  applyMiddleware(thunk),
+  // other store enhancers if any
+);
 
-const store = createStore(reducer, window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__())
+const store = createStore(rootReducer, enhancer)
 export {store};
-
-export {currentUser};
-export {defaultState};
+export { currentUser };
+export { defaultState };

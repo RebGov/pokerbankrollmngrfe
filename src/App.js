@@ -6,7 +6,11 @@ import SignUp from './SignUp';
 import Home from './Home';
 
 class App extends Component {
+  // comonentDidMount(){
+  //   this.props.getUserData()
+  // }
   render() {
+
     return (
       <BrowserRouter>
         <Switch>
@@ -18,5 +22,6 @@ class App extends Component {
     );
   }
 }
+//need to send handleChange and handleSubmit to both signIn and signUp pages.
 
 export default App;

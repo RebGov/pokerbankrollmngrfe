@@ -3,13 +3,16 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { Redirect} from 'react-router-dom';
+import { loginUser, updateCurrentUser } from './actions/userActions'
 
 class SignIn extends Component {
+
   render() {
+    // console.log('signInPage: ', this.props, this.props.jwt, this.loginUser)
     if (this.props.jwt) return(
       <Redirect
       to={{
-        pathname: "/home",
+        pathname: "/",
         state: {from: this.props.location}
       }}
       />
@@ -17,10 +20,6 @@ class SignIn extends Component {
     return (
       <div>
         <h1>Sign In</h1>
-        <div>
-          <label>Username: </label>
-          <input onChange={e => this.props.updateCurrentUser({ username: e.target.value })} type="text"/>
-        </div>
         <div>
           <label>Email: </label>
           <input onChange={e => this.props.updateCurrentUser({ email: e.target.value })} type="email"/>
@@ -37,25 +36,28 @@ class SignIn extends Component {
   }
 }
 
-const mapStateToProps = (state) => {
+function mapStateToProps(state) {
+  // console.log(state)
   return {
-    jwt: state.jwt
+    jwt: state.users.jwt
   }
 }
-const mapDispatchToProps = (dispatch) => {
-  return {
-    updateCurrentUser(userAttributes){
-          dispatch({
-              type: 'UPDATE_CURRENT_USER',
-              payload: userAttributes
-          })
-      },
-      loginUser(){
-          dispatch({
-              type: 'ATTEMPT_TO_LOGIN_USER'
-          })
-      }
-  }
+const mapDispatchToProps = {
+  updateCurrentUser: updateCurrentUser,
+  loginUser: loginUser
+  // return {
+  //   updateCurrentUser(userAttributes){
+  //         dispatch({
+  //             type: 'UPDATE_CURRENT_USER',
+  //             payload: userAttributes
+  //         })
+  //     },
+  //     loginUser(){
+  //         dispatch({
+  //             type: 'ATTEMPT_TO_LOGIN_USER'
+  //         })
+  //     }
+  // }
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(SignIn);
