@@ -21,6 +21,7 @@ const defaultState = {
     email: '',
     first_name: '',
     last_name: '',
+    read_and_accept_terms_of_service: false,
     password: ''
   },
   currentUser: currentUser,

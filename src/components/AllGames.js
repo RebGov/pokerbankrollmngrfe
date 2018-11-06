@@ -1,10 +1,18 @@
-import React, { Component, Fragment } from 'react';
+import React, { Component } from 'react';
+import { Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
+import { logoutUser } from '../actions/userActions'
 
 class AllGames extends Component {
   render() {
-    console.log("AllGames: ", this.props.playedGames)
-    return (
+    return this.props.playedGames === null ?  (
+      <div>
+        <h1>Welcome {this.props.currentUser.first_name}</h1>
+        <br/>
+        <button onClick={this.props.logoutUser}>Log Out</button>
+      </div>
+
+    ): (
       <div>
         <h1>Welcome {this.props.currentUser.first_name}: </h1>
         <ul>
@@ -30,22 +38,21 @@ class AllGames extends Component {
           </div>
             ))}
         </ul>
+        <button onClick={this.props.logoutUser}>Log Out</button>
       </div>
-    );
+    )
   }
 }
 
-const mapStateToProps = ( state ) => {
+function mapStateToProps(state)  {
     return {
       currentUser: state.users.currentUser,
       playedGames: state.users.currentUser.played_games
     }
 }
 
-const mapDispatchToProps = ( dispatch ) => {
-    return {
-
-    }
+const mapDispatchToProps = {
+  logoutUser: logoutUser
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(AllGames);

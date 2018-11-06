@@ -9,11 +9,10 @@ import {getUserData} from '../actions/userActions'
 class Home extends Component {
   componentDidMount(){
     if (this.props.jwt){
-      console.log(this.props.jwt)
-      // debugger
       this.props.getUserData(this.props.jwt)
-  }
-    //debugger
+    } else {
+      console.log("not yet loaded")
+    }
   }
 
   render() {
@@ -31,10 +30,6 @@ const mapStateToProps = ( state ) => {
 const mapDispatchToProps = {
   getUserData: getUserData
 }
-// const mapDispatchToProps = ( dispatch ) => {
-//   return {
-//
-//   }
-// }
+
 
 export default connect(mapStateToProps, mapDispatchToProps)(Home);

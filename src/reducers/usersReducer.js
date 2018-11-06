@@ -21,7 +21,7 @@ export default function usersReducer(currentState=defaultState, action) {
       body: JSON.stringify(newState.newUser)
       })
       .then( resp => resp.json())
-      .then( payload => store.dispatch({ type: 'LOGIN_USER', payload: payload}) )
+      .then( payload => store.dispatch({ type: 'LOGIN_NEW_USER', payload: payload}) )
   break;
   case 'ATTEMPT_TO_LOGIN_USER':
   // fetch auth(login)
@@ -46,6 +46,18 @@ export default function usersReducer(currentState=defaultState, action) {
     localStorage.setItem('jwt', newState.jwt)
     // localStorage.setItem('currentUser', JSON.stringify(newState.currentUser))
   break;
+  case 'LOGIN_NEW_USER':
+    newState.currentUser = action.payload.user
+    newState.jwt = action.payload.jwt
+    localStorage.setItem('jwt', newState.jwt)
+    localStorage.setItem('currentUser', JSON.stringify(newState.currentUser))
+  break;
+  case 'LOGOUT_USER':
+    localStorage.clear()
+    newState.currentUser = '';
+    newState.jwt = false
+
+    break;
   default:
 
   break;
