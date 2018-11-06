@@ -38,24 +38,24 @@ const defaultState = {
     profit: '',
     minutes: '',
     won_game: ''
-  }
+  },
   // //new items to lists persist
-  // newGame: {},
-  // newBlindsName:'',
-  // newGameName: '',
-  // newGameLocation:'',
-  // newNote:{},
+  //newGame: {},
+  newBlindsName:'',
+  newGameName: '',
+  newGameLocation:'',
+  newNote:{},
   // // all items lists to select from
-  // blindsNames: {},
-  // gameNames: {},
-  // gameLocations: {},
-  // allNotes: {},
+  allBlindsNames: {},
+  allGameNames: {},
+  allGameLocations: {},
+  allNotes: {},
   // // selected items from list to add to game
-  // selectedGame: {},
-  // selectedBlindsName: {},
-  // selectedGameName: {},
-  // selectedGameLocation: {},
-  // selectedNote: {}
+  //selectedGame: {},
+  selectedBlindsName: {},
+  selectedGameName: {},
+  selectedGameLocation: {},
+  selectedNote: {}
 }
 
 
