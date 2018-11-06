@@ -1,8 +1,8 @@
 
 //edit this to notes info
-import { store, defaultState } from '../store';
+// import { store } from '../store';
 
-export default function notesReducer(currentState=defaultState, action) {
+export default function notesReducer(currentState, action) {
   const newState = {...currentState}
     switch(action.type){
       case 'GET_ALL_NOTES':

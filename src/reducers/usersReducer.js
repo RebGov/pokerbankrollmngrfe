@@ -1,6 +1,6 @@
-import {store, defaultState } from '../store';
+import {store} from '../store';
 
-export default function usersReducer(currentState=defaultState, action) {
+export default function usersReducer(currentState, action) {
   // console.log(store, defaultState)
   const newState = {...currentState}
     switch(action.type){
@@ -53,8 +53,9 @@ export default function usersReducer(currentState=defaultState, action) {
     localStorage.setItem('currentUser', JSON.stringify(newState.currentUser))
   break;
   case 'LOGOUT_USER':
+    
     localStorage.clear()
-    newState.currentUser = '';
+    newState.currentUser = {};
     newState.jwt = false
 
     break;

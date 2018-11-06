@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import Button from '@material-ui/core/Button';
 // import { Route } from  'react-router-dom'
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
@@ -28,7 +29,7 @@ class SignIn extends Component {
           <label>Password: </label>
           <input onChange={e => this.props.updateCurrentUser({ password: e.target.value })} type="password"/>
         </div>
-          <button onClick={this.props.loginUser} >Submit</button>
+          <Button variant="contained" color="primary" onClick={this.props.loginUser} >Submit</Button>
           <br/>
           <Link to="/createAccount">Create Account</Link>
       </div>
@@ -45,19 +46,6 @@ function mapStateToProps(state) {
 const mapDispatchToProps = {
   updateCurrentUser: updateCurrentUser,
   loginUser: loginUser
-  // return {
-  //   updateCurrentUser(userAttributes){
-  //         dispatch({
-  //             type: 'UPDATE_CURRENT_USER',
-  //             payload: userAttributes
-  //         })
-  //     },
-  //     loginUser(){
-  //         dispatch({
-  //             type: 'ATTEMPT_TO_LOGIN_USER'
-  //         })
-  //     }
-  // }
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(SignIn);

@@ -19,7 +19,6 @@ class Home extends Component {
     this.props.getAllLocationsList()
     if (this.props.jwt){
       this.props.getUserData(this.props.jwt)
-
     } else {
       console.log("not yet loaded")
     }
@@ -33,8 +32,7 @@ class Home extends Component {
 
 const mapStateToProps = ( state ) => {
   return {
-      jwt: state.users.jwt,
-      allBlindsNames: state.blinds_names
+      jwt: state.jwt,
   }
 }
 const mapDispatchToProps = {

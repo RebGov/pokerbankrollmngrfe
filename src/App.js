@@ -1,17 +1,29 @@
 import React, { Component } from 'react';
 // import './App.css';
+import { connect } from 'react-redux';
 import { BrowserRouter, Switch, Route } from  'react-router-dom'
 import SignIn from './components/SignIn';
 import SignUp from './components/SignUp';
 import Home from './pages/Home';
+import { getUserData } from './actions/userActions';
+import { getAllBlindsList } from './actions/blindsNameActions';
+import { getAllLocationsList} from './actions/gameLocationActions';
+import { getAllGameNamesList } from './actions/gameNameActions'
+import { getAllNotes } from './actions/noteActions'
+
 // import { getAllBlindsList } from './actions/blindsNameActions';
 
 class App extends Component {
-  // comonentDidMount(){
-  //   this.props.getAllBlindsList()
+  // componentDidMount(){
+  //   // this.props.getAllNotes()
+  //   // this.props.getAllGameNamesList()
+  //   // this.props.getAllBlindsList()
+  //   // this.props.getAllLocationsList()
+  //
   // }
-  render() {
 
+  render() {
+    console.log('AppPage : ', this.props.jwt)
     return (
       <BrowserRouter>
         <Switch>
@@ -24,5 +36,16 @@ class App extends Component {
   }
 }
 //need to send handleChange and handleSubmit to both signIn and signUp pages.
+const mapStateToProps = ( state ) => {
+  return {
+       jwt: state.jwt,
+  }
+}
+const mapDispatchToProps = {
+  // getAllNotes: getAllNotes,
+  // getAllGameNamesList: getAllGameNamesList,
+  // getAllBlindsList: getAllBlindsList,
+  // getAllLocationsList: getAllLocationsList,
 
-export default App;
+}
+export default connect(mapStateToProps, mapDispatchToProps)(App);
