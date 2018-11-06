@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import Button from '@material-ui/core/Button';
 import { Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { logoutUser } from '../actions/userActions'
@@ -9,7 +10,8 @@ class AllGames extends Component {
       <div>
         <h1>Welcome {this.props.currentUser.first_name}</h1>
         <br/>
-        <button onClick={this.props.logoutUser}>Log Out</button>
+        <Button variant="contained" color="primary" onClick={this.props.logoutUser}>Log Out</Button>
+
       </div>
 
     ): (
@@ -38,7 +40,7 @@ class AllGames extends Component {
           </div>
             ))}
         </ul>
-        <button onClick={this.props.logoutUser}>Log Out</button>
+        <Button variant="contained" color="primary" onClick={this.props.logoutUser}>Log Out</Button>
       </div>
     )
   }
@@ -46,8 +48,8 @@ class AllGames extends Component {
 
 function mapStateToProps(state)  {
     return {
-      currentUser: state.users.currentUser,
-      playedGames: state.users.currentUser.played_games
+      currentUser: state.currentUser,
+      playedGames: state.currentUser.played_games
     }
 }
 

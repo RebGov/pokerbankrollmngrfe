@@ -1,6 +1,6 @@
-import { store, defaultState } from '../store';
+// import { store, defaultState } from '../store';
 
-export default function gameLocationReducer(currentState=defaultState, action) {
+export default function gameLocationReducer(currentState, action) {
   const newState = {...currentState}
     switch(action.type){
       case 'GET_ALL_LOCATIONS_LIST':

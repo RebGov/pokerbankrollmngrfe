@@ -1,6 +1,6 @@
-import { store, defaultState } from '../store';
+// import { store, defaultState } from '../store';
 
-export default function gameNamesReducer(currentState=defaultState, action) {
+export default function gameNamesReducer(currentState, action) {
   const newState = {...currentState}
     switch(action.type){
       case 'GET_ALL_GAME_NAMES_LIST':

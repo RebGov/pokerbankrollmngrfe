@@ -15,6 +15,7 @@ try {
     played_games: []
   }
 }
+//default state should only be inside of individual reducer applicable to that one only.
 const defaultState = {
   jwt: localStorage.jwt || false,
   newUser: {
@@ -39,23 +40,24 @@ const defaultState = {
     minutes: '',
     won_game: ''
   },
-  // //new items to lists persist
   //newGame: {},
-  newBlindsName:'',
-  newGameName: '',
-  newGameLocation:'',
-  newNote:{},
-  // // all items lists to select from
-  allBlindsNames: {},
-  allGameNames: {},
-  allGameLocations: {},
-  allNotes: {},
-  // // selected items from list to add to game
   //selectedGame: {},
+
+  newBlindsName:'',
+  allBlindsNames: {},
   selectedBlindsName: {},
+
+  newGameName: '',
+  allGameNames: {},
   selectedGameName: {},
-  selectedGameLocation: {},
-  selectedNote: {}
+
+  newNote:'',
+  allNotes: {},
+  selectedNote: [],
+
+  newGameLocation:'',
+  allGameLocations: {},
+  selectedGameLocation: {}
 }
 
 
@@ -65,7 +67,7 @@ const enhancer = composeEnhancers(
   // other store enhancers if any
 );
 
-const store = createStore(rootReducer, enhancer)
+const store = createStore(rootReducer, defaultState, enhancer)
 export {store};
 export { currentUser };
 export { defaultState };
