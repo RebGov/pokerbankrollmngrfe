@@ -4,10 +4,11 @@ import { BrowserRouter, Switch, Route } from  'react-router-dom'
 import SignIn from './components/SignIn';
 import SignUp from './components/SignUp';
 import Home from './pages/Home';
+// import { getAllBlindsList } from './actions/blindsNameActions';
 
 class App extends Component {
   // comonentDidMount(){
-  //   this.props.getUserData()
+  //   this.props.getAllBlindsList()
   // }
   render() {
 

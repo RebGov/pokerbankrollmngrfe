@@ -9,12 +9,12 @@ import gameLocationsReducer from './gameLocationsReducer';
 
 
 const rootReducer = combineReducers({
-  users: usersReducer
+  users: usersReducer,
   // played_games: playedGamesReducer,
-  // notes: notesReducer,
-  // gameNames: gameNamesReducer,
-  // blindsNames: blindsNamesReducer,
-  // gameLocations: gameLocationsReducer
+  notes: notesReducer,
+  gameNames: gameNamesReducer,
+  blindsNames: blindsNamesReducer,
+  gameLocations: gameLocationsReducer
 });
 
 export default rootReducer;
