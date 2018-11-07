@@ -1,4 +1,4 @@
-import {store} from '../store';
+import {store, defaultState} from '../store';
 
 export default function usersReducer(currentState, action) {
   // console.log(store, defaultState)
@@ -65,6 +65,8 @@ export default function usersReducer(currentState, action) {
     localStorage.clear()
     newState.currentUser = {};
     newState.jwt = false
+
+    //clear out all state
     //redirect to home page
 
     break;

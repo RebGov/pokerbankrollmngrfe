@@ -15,6 +15,8 @@ export default function notesReducer(currentState, action) {
         newState.selectedNote = { ...newState.selectedNote, ...action.payload.note }
       break;
       default:
+  
+
       break;
     }//lend switch
   return newState

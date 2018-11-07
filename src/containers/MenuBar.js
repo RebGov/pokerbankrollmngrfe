@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
+import compose from 'recompose/compose';
 import { withStyles } from '@material-ui/core/styles';
 import Drawer from '@material-ui/core/Drawer';
 import Button from '@material-ui/core/Button';
@@ -16,6 +18,7 @@ import MultilineChartIcon from '@material-ui/icons/MultilineChart';
 import AssignmentIcon from '@material-ui/icons/Assignment';
 import InsertChartIcon from '@material-ui/icons/InsertChart';
 import LibraryAddIcon from '@material-ui/icons/LibraryAdd';
+import { logoutUser } from '../actions/userActions';
 
 // import InboxIcon from '@material-ui/icons/MoveToInbox';
 // import MailIcon from '@material-ui/icons/Mail';
@@ -83,7 +86,8 @@ class MenuBar extends React.Component {
         </List>
         <Divider />
         <List>
-          <ListItem button key={'Log Out'}>
+          <ListItem button key={'Log Out'} onClick={this.props.logoutUser}>
+
             <ListItemText primary={'Log Out'} />
           </ListItem>
         </List>
@@ -93,7 +97,7 @@ class MenuBar extends React.Component {
 //line96 giving warning no nested button - button cannot appear as a descendent of button
     return (
       <div>
-        <Button onClick={this.toggleDrawer('left', true)}><MenuIcon /></Button>
+        <Button onClick={this.toggleDrawer('left', true)}><MenuIcon style={{color: 'white'}} /></Button>
 
         <Drawer open={this.state.left} onClose={this.toggleDrawer('left', false)}>
           <div
@@ -110,9 +114,24 @@ class MenuBar extends React.Component {
     );
   }
 }
+function mapStateToProps(state)  {
+    return {
+      currentUser: state.currentUser,
+      playedGames: state.currentUser.played_games
+    }
+}
+
+const mapDispatchToProps = {
+  logoutUser: logoutUser
+}
 
 MenuBar.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles)(MenuBar);
+
+export default  compose(
+  withStyles(styles, {
+    name: 'MenuBar',
+  }),
+  connect(mapStateToProps, mapDispatchToProps))(MenuBar);

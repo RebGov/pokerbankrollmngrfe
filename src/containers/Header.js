@@ -39,8 +39,8 @@ function Header(props) {
           <Typography variant="h6" color="inherit" className={classes.grow}>
             POKER BANKROLL APP
           </Typography>
-          <Link to={{pathname:'/login'}}>
-          <Button color="inherit">Login</Button>
+          <Link style={{ textDecoration: 'none', color:'white' }} to={{pathname:'/login'} } >
+          <Button color="inherit" >Login</Button>
           </Link>
         </Toolbar>
       </AppBar>

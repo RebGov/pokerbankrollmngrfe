@@ -39,7 +39,7 @@ class App extends Component {
 
     console.log('AppPage : ', this.props.jwt)
     return (
-      <div >
+      <div className="App">
 
 
         <BrowserRouter>
