@@ -18,6 +18,7 @@ try {
 //default state should only be inside of individual reducer applicable to that one only.
 const defaultState = {
   jwt: localStorage.jwt || false,
+  // userSignedin: false,
   newUser: {
     email: '',
     first_name: '',

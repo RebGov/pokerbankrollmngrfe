@@ -9,6 +9,11 @@ import { loginUser, updateCurrentUser } from '../actions/userActions'
 class SignIn extends Component {
 
   render() {
+    const style={
+      border: "1px solid purple",
+      padding: "1rem",
+      margin: "1rem"
+    };
     // console.log('signInPage: ', this.props, this.props.jwt, this.loginUser)
     if (this.props.jwt) return(
       <Redirect
@@ -19,9 +24,9 @@ class SignIn extends Component {
       />
     )
     return (
-      <div>
+      <div style={style}>
         <h1>Sign In</h1>
-        <div>
+        <div >
           <label>Email: </label>
           <input onChange={e => this.props.updateCurrentUser({ email: e.target.value })} type="email"/>
         </div>
@@ -40,7 +45,7 @@ class SignIn extends Component {
 function mapStateToProps(state) {
   // console.log(state)
   return {
-    jwt: state.users.jwt
+    jwt: state.jwt
   }
 }
 const mapDispatchToProps = {

@@ -19,11 +19,11 @@ import gameLocationsReducer from './gameLocationsReducer';
 
 const rootReducer = (currentState, action) => {
   let newState = { ...currentState }
-  newState.users = usersReducer(newState.users, action)
-  newState.notes = notesReducer(newState.notes, action)
-  newState.gameNames = gameNamesReducer(newState.gameNames, action)
-  newState.blindsNames = blindsNamesReducer(newState.blindsNames, action)
-  newState.gameLocations = gameLocationsReducer(newState.gameLocations, action)
+  newState = usersReducer(newState, action)
+  newState = notesReducer(newState, action)
+  newState = gameNamesReducer(newState, action)
+  newState = blindsNamesReducer(newState, action)
+  newState = gameLocationsReducer(newState, action)
 
 
 

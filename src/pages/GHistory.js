@@ -1,21 +1,15 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
-class FormCreateGame extends Component {
+class GHistory extends Component {
   render(){
     const style={
-      border: "1px solid green",
+      border: "1px solid cyan",
       padding: "1rem",
       margin: "1rem"
     };
     return (
-      <div style={style}> Hello Create Played Game Form
-      <form>
-      
-      </form>
-
-
-      </div>
+      <div style={style}>Hello Game History Page</div>
     )
   }
 
@@ -30,4 +24,4 @@ const mapDispatchToProps = {
 
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(FormCreateGame);
+export default connect(mapStateToProps, mapDispatchToProps)(GHistory);
