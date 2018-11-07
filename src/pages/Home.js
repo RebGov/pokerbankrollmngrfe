@@ -5,18 +5,18 @@ import SignUp from '../components/SignUp';
 import AllGames from '../components/AllGames'
 // import { Link } from 'react-router-dom';
 import { getUserData } from '../actions/userActions';
-import { getAllBlindsList } from '../actions/blindsNameActions';
-import { getAllLocationsList} from '../actions/gameLocationActions';
-import { getAllGameNamesList } from '../actions/gameNameActions'
-import { getAllNotes } from '../actions/noteActions'
+// import { getAllBlindsList } from '../actions/blindsNameActions';
+// import { getAllLocationsList} from '../actions/gameLocationActions';
+// import { getAllGameNamesList } from '../actions/gameNameActions'
+// import { getAllNotes } from '../actions/noteActions'
 
 
 class Home extends Component {
   componentDidMount(){
-    this.props.getAllNotes()
-    this.props.getAllGameNamesList()
-    this.props.getAllBlindsList()
-    this.props.getAllLocationsList()
+    // this.props.getAllNotes()
+    // this.props.getAllGameNamesList()
+    // this.props.getAllBlindsList()
+    // this.props.getAllLocationsList()
     if (this.props.jwt){
       this.props.getUserData(this.props.jwt)
     } else {
@@ -36,10 +36,10 @@ const mapStateToProps = ( state ) => {
   }
 }
 const mapDispatchToProps = {
-  getAllNotes: getAllNotes,
-  getAllGameNamesList: getAllGameNamesList,
-  getAllBlindsList: getAllBlindsList,
-  getAllLocationsList: getAllLocationsList,
+  // getAllNotes: getAllNotes,
+  // getAllGameNamesList: getAllGameNamesList,
+  // getAllBlindsList: getAllBlindsList,
+  // getAllLocationsList: getAllLocationsList,
   getUserData: getUserData
 }
 

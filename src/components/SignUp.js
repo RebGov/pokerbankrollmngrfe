@@ -8,8 +8,13 @@ import { createUser, updateNewUser } from '../actions/userActions'
 
 class SignUp extends Component {
   render() {
+    const style={
+      border: "1px solid purple",
+      padding: "1rem",
+      margin: "1rem"
+    };
     return (
-      <div>
+      <div style={style}>
         <h1>Sign Up</h1>
         <div>
           <label>Email: </label>

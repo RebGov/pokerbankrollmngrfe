@@ -6,16 +6,23 @@ import { logoutUser } from '../actions/userActions'
 
 class AllGames extends Component {
   render() {
+
+
+    const style={
+      border: "1px solid orange",
+      padding: "1rem",
+      margin: "1rem"
+    };
     return this.props.playedGames === null ?  (
-      <div>
-        <h1>Welcome {this.props.currentUser.first_name}</h1>
+      <div style={style}>
+        <h1>Welcome </h1>
         <br/>
         <Button variant="contained" color="primary" onClick={this.props.logoutUser}>Log Out</Button>
 
       </div>
 
     ): (
-      <div>
+      <div style={style}>
         <h1>Welcome {this.props.currentUser.first_name}: </h1>
         <ul>
         {this.props.playedGames.map( game => (
