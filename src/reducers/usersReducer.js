@@ -2,7 +2,7 @@ import {store, defaultState} from '../store';
 
 export default function usersReducer(currentState, action) {
   // console.log(store, defaultState)
-  const newState = {...currentState}
+  let newState = {...currentState}
     switch(action.type){
   case 'UPDATE_NEW_USER':
     newState.newUser = { ...newState.newUser, ...action.payload }
@@ -63,8 +63,8 @@ export default function usersReducer(currentState, action) {
   case 'LOGOUT_USER':
 
     localStorage.clear()
-    newState.currentUser = {};
-    newState.jwt = false
+    newState.jwt=false
+    newState = defaultState
 
     //clear out all state
     //redirect to home page

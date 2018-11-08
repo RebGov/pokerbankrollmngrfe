@@ -17,21 +17,24 @@ const styles = theme => ({
 
 function EndDateTime(props) {
   const { classes } = props;
-  let currentDate = Date.now
-  let defaultDateTime = moment(currentDate).format();
+  // let currentDate = Date.now
+  // let defaultDateTime = moment(currentDate).format();
+  // let defaultDateTime = moment();
   return (
-    <form className={classes.container} noValidate>
+
+    <div className={classes.container} noValidate>
       <TextField
         id="datetime-local"
         label="End Date & Time"
         type="datetime-local"
-        defaultValue={defaultDateTime}
+        defaultValue="11-01-2018T10:00AM"
         className={classes.textField}
         InputLabelProps={{
           shrink: true,
         }}
       />
-    </form>
+    </div>
+
   );
 }
 

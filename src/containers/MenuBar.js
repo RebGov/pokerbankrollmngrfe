@@ -14,7 +14,7 @@ import ListItemText from '@material-ui/core/ListItemText';
 import HomeIcon from '@material-ui/icons/Home';
 import MenuIcon from '@material-ui/icons/Menu';
 //import WatchIcon from '@material-ui/icons/Watch';
-import MultilineChartIcon from '@material-ui/icons/MultilineChart';
+// import MultilineChartIcon from '@material-ui/icons/MultilineChart';
 import AssignmentIcon from '@material-ui/icons/Assignment';
 import InsertChartIcon from '@material-ui/icons/InsertChart';
 import LibraryAddIcon from '@material-ui/icons/LibraryAdd';
@@ -32,7 +32,7 @@ const styles = {
   },
 };
 
-class MenuBar extends React.Component {
+class MenuBar extends Component {
   state = {
     left: false
   };
@@ -98,7 +98,6 @@ class MenuBar extends React.Component {
     return (
       <div>
         <Button onClick={this.toggleDrawer('left', true)}><MenuIcon style={{color: 'white'}} /></Button>
-
         <Drawer open={this.state.left} onClose={this.toggleDrawer('left', false)}>
           <div
             tabIndex={0}

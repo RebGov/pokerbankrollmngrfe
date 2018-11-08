@@ -50,6 +50,7 @@ class App extends Component {
             <PrivateRoute path="/:user/history" component={GHistory} />
             <PrivateRoute path="/:user/NewGame"  component={FormCreateGame} />
             <PrivateRoute path="/:user/Statistics" component={Statistics}/>
+            <PrivateRoute path="/:user/:game" component={CurrentGame} />
             <Route path="/login" component={SignIn}/>
             <Route path='/createAccount' component={SignUp}/>
 
@@ -66,7 +67,6 @@ class App extends Component {
 }
 //need to send handleChange and handleSubmit to both signIn and signUp pages.
 const mapStateToProps = ( state ) => {
-  console.log(state)
   return {
     jwt: state.jwt,
   }

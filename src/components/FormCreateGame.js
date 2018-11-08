@@ -1,7 +1,11 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import StartDateTime from '../stylesProject/StartDateTime'
-import EndDateTime from '../stylesProject/StartDateTime'
+import Button from '@material-ui/core/Button';
+// import DateTimePicker from 'material-ui-datetimepicker';
+// import DatePickerDialog from '@material-ui/DatePicker/DatePickerDialog'
+// import TimePickerDialog from '@material-ui/TimePicker/TimePickerDialog';
+// import StartDateTime from '../stylesProject/StartDateTime';
+// import EndDateTime from '../stylesProject/StartDateTime';
 
 class FormCreateGame extends Component {
   render(){
@@ -11,24 +15,60 @@ class FormCreateGame extends Component {
       margin: "1rem"
     };
     return (
-      <div style={style}> Hello Create Played Game Form
-        <form>
+      <div style={style}>
+      <h4>Hello Create Played Game Form</h4>
+
+        <form onSubmit={this.handleSubmit}>
+        <div>
+          <label> Select Location: </label>
+          <select value={console.log('value')} onChange={console.log("handleChange")}>
+            <option value="grapefruit">Grapefruit</option>
+            <option value="lime">Lime</option>
+            <option selected value="Location">Location</option>
+            <option value="mango">Mango</option>
+          </select>
+        </div>
+        <br />
+        <div>
+          <label> Select Game: </label>
+          <select value={console.log('value')} onChange={console.log("handleChange")}>
+            <option value="grapefruit">Grapefruit</option>
+            <option value="lime">Lime</option>
+            <option selected value="Game">Game</option>
+            <option value="mango">Mango</option>
+          </select>
+        </div>
+        <br/>
+        <div className="blinds_selector">
+        <label> Select Blinds: </label>
+          <select style={{color: 'primary'}} value={console.log('value')} onChange={console.log("handleChange")}>
+            <option value="Opt1">Opt1</option>
+            <option value="lime">Lime</option>
+            <option  selected value="Blinds">Blinds</option>
+            <option value="mango">Mango</option>
+          </select>
+        </div>
+        <br/>
         <div >
-          <label>$ </label>
+          <label>Buy in: $ </label>
           <input  type="integer"/>
         </div>
+        <br/>
+        <div>
+        
+        </div>
+        <br/>
         <div >
-          <label>Email: </label>
-          <input onChange={e => this.props.updateCurrentUser({ email: e.target.value })} type="email"/>
+          <label>Cash out: $ </label>
+          <input  type="integer"/>
         </div>
+        <br/>
         <div>
-        <StartDateTime />
-        </div>
-        <div>
-        <EndDateTime />
-        </div>
-        </form>
 
+        </div>
+        <br/>
+        </form>
+        <Button variant="contained" color="primary" onClick={console.log('submit form')} >Submit New Game</Button>
 
       </div>
     )

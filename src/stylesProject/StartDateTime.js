@@ -18,21 +18,23 @@ const styles = theme => ({
 
 function StartDateTime(props) {
   const { classes } = props;
-  let currentDate = Date.now
-  let defaultDateTime = moment(currentDate).format();
+  // let currentDate = moment()
+  // let defaultDateTime = moment();
   return (
-    <form className={classes.container} noValidate>
-      <TextField
-        id="datetime-local"
-        label="Start Date & Time"
-        type="datetime-local"
-        defaultValue={defaultDateTime}
-        className={classes.textField}
-        InputLabelProps={{
-          shrink: true,
-        }}
-      />
-    </form>
+
+      <form className={classes.container} noValidate>
+        <TextField
+          id="datetime-local"
+          label="Start Date & Time"
+          type="datetime-local"
+          defaultValue="2018-11-01T10:00"
+          className={classes.textField}
+          InputLabelProps={{
+            shrink: true,
+          }}
+        />
+      </form>
+
   );
 }
 
