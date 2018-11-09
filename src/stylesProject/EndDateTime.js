@@ -1,45 +1,62 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import { withStyles } from '@material-ui/core/styles';
-import TextField from '@material-ui/core/TextField';
+import React, { Fragment, PureComponent } from 'react';
+import { DateTimePicker } from 'material-ui-pickers';
 
-const styles = theme => ({
-  container: {
-    display: 'flex',
-    flexWrap: 'wrap',
-  },
-  textField: {
-    marginLeft: theme.spacing.unit,
-    marginRight: theme.spacing.unit,
-    width: 200,
-  },
-});
+import { connect } from 'react-redux'
+import {updateNewGame} from '../actions/userActions'
 
-function EndDateTime(props) {
-  const { classes } = props;
-  // let currentDate = Date.now
-  // let defaultDateTime = moment(currentDate).format();
-  // let defaultDateTime = moment();
-  return (
+class EndDateTime extends PureComponent {
+  // state = {
+  //   end_date_time: new Date('2018-01-01T00:00:01.000Z'),
+  // }
+  //
+  // handleDateChange = (date) => {
+  //   this.setState({ end_date_time: date });
+  // }
 
-    <div className={classes.container} noValidate>
-      <TextField
-        id="datetime-local"
-        label="End Date & Time"
-        type="datetime-local"
-        defaultValue="11-01-2018T10:00AM"
-        className={classes.textField}
-        InputLabelProps={{
-          shrink: true,
-        }}
-      />
-    </div>
 
-  );
+  render() {
+    // const { end_date_time } = this.state;
+
+    return (
+      <Fragment>
+        <div className="picker">
+          <DateTimePicker
+            value={this.props.value}
+            onChange={date => this.props.updateNewGame({ end_date_time: date.toJSON()})}
+            label="End Date Time"
+            showTodayButton
+          />
+        </div>
+
+      </Fragment>
+    );
+  }
 }
 
-EndDateTime.propTypes = {
-  classes: PropTypes.object.isRequired,
-};
+//
+// <div className="picker">
+//   <DateTimePicker
+//     autoOk
+//     ampm={false}
+//     disableFuture
+//     value={selectedDate}
+//     onChange={this.handleDateChange}
+//     label="24h clock"
+//   />
+// </div>
 
-export default withStyles(styles)(EndDateTime);
+// <div className="picker">
+//   <DateTimePicker
+//     value={selectedDate}
+//     disablePast
+//     onChange={this.handleDateChange}
+//     label="With Today Button"
+//     showTodayButton
+//   />
+// </div>
+const mapDispatchToProps = {
+  updateNewGame: updateNewGame
+
+}
+
+export default connect(null, mapDispatchToProps)(EndDateTime);

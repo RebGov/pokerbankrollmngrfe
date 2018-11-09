@@ -1,4 +1,4 @@
-import {store, defaultState} from '../store';
+import {store } from '../store';
 
 export default function usersReducer(currentState, action) {
   // console.log(store, defaultState)
@@ -21,7 +21,13 @@ export default function usersReducer(currentState, action) {
       body: JSON.stringify(newState.newUser)
       })
       .then( resp => resp.json())
-      .then( payload => store.dispatch({ type: 'LOGIN_NEW_USER', payload: payload}) )
+      .then( payload => {
+        if(!payload.error){
+        store.dispatch({ type: 'LOGIN_NEW_USER', payload: payload})
+      } else {
+        store.dispatch({ type: 'DISPLAY_ERROR', payload: payload})
+      }
+    })
   break;
   case 'ATTEMPT_TO_LOGIN_USER':
   // fetch auth(login)
@@ -60,11 +66,38 @@ export default function usersReducer(currentState, action) {
     localStorage.setItem('currentUser', JSON.stringify(newState.currentUser))
 
   break;
+  case 'UPDATE_NEW_GAME':
+    newState.newUserGame = {...newState.newUserGame, ...action.payload }
+  break;
+  case 'CREATE_NEW_GAME':
+    fetch('http://localhost:3000/api/v1/played_game/new', {
+      method: 'POST',
+      headers:{
+        'Content-Type': 'application/json',
+        'Accept': 'application/json'
+
+      },
+      body: JSON.stringify(newState.newUserGame)
+      })
+      .then( resp => resp.json())
+      .then( payload => {
+        if(!payload.error){
+        store.dispatch({ type: 'GET_USER_GAME_DATA', payload: payload})
+      } else {
+        store.dispatch({ type: 'DISPLAY_ERROR', payload: payload})
+      }
+    })
+    //note passing user id on create game need to do so.
+  
+  break;
+  case 'DISPLAY_ERROR':
+  newState.displayError = action.payload
+  break;
   case 'LOGOUT_USER':
 
     localStorage.clear()
     newState.jwt=false
-    newState = defaultState
+
 
     //clear out all state
     //redirect to home page

@@ -24,7 +24,7 @@ export function updateNewNote(noteAttributes){
 }
 export function updateCurrentNote(noteAttributes){
   return ({
-    type: 'UPDATE_CURRENT_Note',
+    type: 'UPDATE_CURRENT_NOTE',
     payload: noteAttributes
   })
 }

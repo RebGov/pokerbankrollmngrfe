@@ -43,7 +43,17 @@ export function getUserData(jwt){
     )
   }
 }
-
+export function updateNewGame(gameAttributes){
+  return ({
+    type: 'UPDATE_NEW_GAME',
+    payload: gameAttributes
+  })
+}
+export function createNewGame(jwt){
+  return ({
+    type: 'CREATE_NEW_GAME'
+  })
+}
 export function logoutUser(){
   return ({
     type: 'LOGOUT_USER'

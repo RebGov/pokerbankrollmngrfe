@@ -27,3 +27,29 @@ export function updateCurrentBlinds(blindsAttributes){
     payload: blindsAttributes
   })
 }
+export function selectGameBlinds(payload){
+  console.log('blindsName ', payload)
+  return ({
+    type: 'UPDATE_NEW_GAME',
+    payload: { blinds_name_id: payload.id }
+  })
+}
+
+// export function addInputBlindsName = () => {
+//   this.props.saveSelectBlindsNameValue({blinds_name_attribute:e.target.value})
+// }
+// removeInput = (index) => {
+//   this.props.removeSelectBlindsName(index)
+// }
+
+// export function saveSelectBlindsNameValue = (e, id) => {
+//  let data = {}
+//  data.id = id;
+//  data.value = e.target.value
+//
+//  this.props.saveSelectBlindsNameValue(data)
+// }
+// export function renderSelectBlindsNames = (selection, index) => {
+//   const selectedValue = selection.value || '';
+//   const id = selection.id;
+// }

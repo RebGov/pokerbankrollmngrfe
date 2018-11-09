@@ -6,7 +6,7 @@ export default function notesReducer(currentState, action) {
   const newState = {...currentState}
     switch(action.type){
       case 'GET_ALL_NOTES':
-        newState.allNotes = action.payload.notes
+        newState.allNotes = action.payload.notes 
       break;
       case 'UPDATE_NEW_NOTE':
         newState.newNote = { ...newState.newNote, ...action.payload.note }
@@ -15,7 +15,7 @@ export default function notesReducer(currentState, action) {
         newState.selectedNote = { ...newState.selectedNote, ...action.payload.note }
       break;
       default:
-  
+
 
       break;
     }//lend switch

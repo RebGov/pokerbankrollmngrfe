@@ -27,3 +27,11 @@ export function updateCurrentLocation(locationAttributes){
     payload: locationAttributes
   })
 }
+
+export function selectGameLocation(payload){
+  console.log("Game Location ", payload)
+  return ({
+    type: 'UPDATE_NEW_GAME',
+    payload: { game_location_id: payload.id }
+  })
+}

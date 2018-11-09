@@ -1,6 +1,11 @@
 import { createStore, applyMiddleware, compose } from 'redux';
 import thunk from 'redux-thunk'
 import rootReducer from './reducers/rootReducer';
+import { getUserData } from './actions/userActions';
+import { getAllBlindsList } from './actions/blindsNameActions';
+import { getAllLocationsList} from './actions/gameLocationActions';
+import { getAllGameNamesList } from './actions/gameNameActions';
+import { getAllNotes } from './actions/noteActions';
 
 let currentUser;
 try {
@@ -19,6 +24,7 @@ try {
 const defaultState = {
   jwt: localStorage.jwt || false,
   // userSignedin: false,
+  displayError: {},
   newUser: {
     email: '',
     first_name: '',
@@ -30,35 +36,37 @@ const defaultState = {
   userPlayedGames: currentUser.played_games,
   newUserGame: {
     user_id: '',
-    start_date_time: '',
-    end_date_time: '',
+    start_date_time: new Date('2018-01-01T00:00:01.000Z'),
+    end_date_time: new Date('2018-01-01T00:00:01.000Z'),
     buy_in: '',
     cash_out: '',
+    blinds_name_id: '',
     game_location_id: '',
     game_name_id: '',
-    tournament: '',
+    tournament: false,
     profit: '',
     minutes: '',
     won_game: ''
+
   },
   //newGame: {},
   //selectedGame: {},
 
   newBlindsName:'',
-  allBlindsNames: {},
-  selectedBlindsName: {},
+  allBlindsNames: [],
+  selectedBlindsName: [],
 
   newGameName: '',
-  allGameNames: {},
-  selectedGameName: {},
+  allGameNames:[],
+  selectedGameName: [],
 
   newNote:'',
   allNotes: {},
   selectedNote: [],
 
   newGameLocation:'',
-  allGameLocations: {},
-  selectedGameLocation: {}
+  allGameLocations: [],
+  selectedGameLocation: []
 }
 
 
@@ -69,6 +77,16 @@ const enhancer = composeEnhancers(
 );
 
 const store = createStore(rootReducer, defaultState, enhancer)
-export {store};
-export { currentUser };
-export { defaultState };
+
+
+if (defaultState.jwt!=="undefined"|| defaultState.jwt!== false){
+  store.dispatch(getUserData(defaultState.jwt))
+  store.dispatch(getAllNotes())
+  store.dispatch(getAllGameNamesList())
+  store.dispatch(getAllBlindsList())
+  store.dispatch(getAllLocationsList())
+} else {
+  console.log("not yet loaded")
+}
+
+export {store, currentUser, defaultState };

@@ -28,3 +28,11 @@ export function UPDATE_CURRENT_GAME_NAME(gameNameAttributes){
     payload: gameNameAttributes
   })
 }
+
+export function selectGameName(payload){
+
+  return ({
+    type: 'UPDATE_NEW_GAME',
+    payload: { game_name_id: payload.id }
+  })
+}
