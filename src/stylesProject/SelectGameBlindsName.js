@@ -1,13 +1,15 @@
 import React, {  Component } from 'react';
 import { connect } from 'react-redux';
-// import PropTypes from 'prop-types';
+import PropTypes from 'prop-types';
+import classNames from 'classnames';
+import MenuItem from '@material-ui/core/MenuItem';
+import TextField from '@material-ui/core/TextField';
 import compose from 'recompose/compose';
 import { withStyles } from '@material-ui/core/styles';
 // import Input from '@material-ui/core/Input';
 // import OutlinedInput from '@material-ui/core/OutlinedInput';
 // import FilledInput from '@material-ui/core/FilledInput';
 // import InputLabel from '@material-ui/core/InputLabel';
-import MenuItem from '@material-ui/core/MenuItem';
 // import FormHelperText from '@material-ui/core/FormHelperText';
 // import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
@@ -28,13 +30,30 @@ const styles = theme => ({
   selectEmpty: {
     marginTop: theme.spacing.unit * 2,
   },
+  container: {
+    display: 'flex',
+    flexWrap: 'wrap',
+  },
+  // textField: {
+  //   marginLeft: theme.spacing.unit,
+  //   marginRight: theme.spacing.unit,
+  //   width: 200,
+  // },
+  // dense: {
+  //   marginTop: 19,
+  // },
+  // menu: {
+  //   width: 200,
+  // },
 });
+
 
 class SelectGameBlindsName extends Component {
 
 
 
   render(){
+    // const { classes } = this.props;
     const selections = this.props.allBlindsNames || {}
     // const id = selection.id;
     console.log("select Blinds", selections)
@@ -43,6 +62,7 @@ class SelectGameBlindsName extends Component {
         <label> Select Blinds: </label>
         <Select
           className="selectBlindsName"
+          value={this.props.newUserGame.blinds_name_id}
           onChange={e => this.props.selectGameBlinds({ id: e.target.value })}>
           <MenuItem value="" disabled selected>Select Blinds</MenuItem>
             {selections.map(blindsName => (
@@ -57,7 +77,8 @@ class SelectGameBlindsName extends Component {
 
 function mapStateToProps(state)  {
     return {
-      allBlindsNames: state.allBlindsNames
+      allBlindsNames: state.allBlindsNames,
+      newUserGame: state.newUserGame
 
     }
 }
@@ -65,7 +86,9 @@ function mapStateToProps(state)  {
 const mapDispatchToProps = {
   selectGameBlinds: selectGameBlinds
 }
-
+// SelectGameBlindsName.propTypes = {
+//   classes: PropTypes.object.isRequired,
+// };
 export default  compose(
   withStyles(styles, {
     name: 'SelectGameBlindsName',

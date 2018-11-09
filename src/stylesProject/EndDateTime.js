@@ -22,7 +22,7 @@ class EndDateTime extends PureComponent {
         <div className="picker">
           <DateTimePicker
             value={this.props.value}
-            onChange={date => this.props.updateNewGame({ end_date_time: date.toJSON()})}
+            onChange={date => this.props.updateNewGame({ end_date_time: date })}
             label="End Date Time"
             showTodayButton
           />

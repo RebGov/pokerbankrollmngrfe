@@ -36,8 +36,8 @@ class SelectGameLocation extends Component {
     return (
       <div>
 
-        <InputLabel> Select Location: </InputLabel>
-          <Select className="selectLoction" onChange={e => this.props.selectGameLocation({ id: e.target.value })}>
+        <label> Select Location: </label>
+          <Select className="selectLoction" value={this.props.newUserGame.game_location_id} onChange={e => this.props.selectGameLocation({ id: e.target.value })}>
             <MenuItem value="" disabled selected>Select Location</MenuItem>
             {selections.map(location => (
             <MenuItem key={location.id} value={location.id}>{location.place}</MenuItem>
@@ -52,7 +52,8 @@ class SelectGameLocation extends Component {
 
 function mapStateToProps(state)  {
   return {
-    allGameLocations: state.allGameLocations
+    allGameLocations: state.allGameLocations,
+    newUserGame: state.newUserGame
 
   }
 }

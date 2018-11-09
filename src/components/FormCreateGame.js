@@ -1,5 +1,11 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
+import compose from 'recompose/compose';
+//import classNames from 'classnames';
+import { withStyles } from '@material-ui/core/styles';
+import MenuItem from '@material-ui/core/MenuItem';
+import TextField from '@material-ui/core/TextField';
 // import FormHelperText from '@material-ui/core/FormHelperText';
 // import FormControl from '@material-ui/core/FormControl';
 import Button from '@material-ui/core/Button';
@@ -10,12 +16,29 @@ import SelectGameBlindsName from '../stylesProject/SelectGameBlindsName'
 import SelectGameName from '../stylesProject/SelectGameName'
 import {updateNewGame, createNewGame } from '../actions/userActions'
 
-
+const styles = theme => ({
+  container: {
+    display: 'flex',
+    flexWrap: 'wrap',
+  },
+  textField: {
+    marginLeft: theme.spacing.unit,
+    marginRight: theme.spacing.unit,
+    width: 200,
+  },
+  dense: {
+    marginTop: 19,
+  },
+  menu: {
+    width: 200,
+  },
+});
 
 
 class FormCreateGame extends Component {
 
   render(){
+    const { classes } = this.props;
     const style={
       border: "1px solid green",
       padding: "1rem",
@@ -25,8 +48,7 @@ class FormCreateGame extends Component {
     return (
       <div style={style}>
       <h4>Hello Create Played Game Form</h4>
-        <form key={this.props.currentUser.id} onSubmit={this.handleSubmit}>
-
+        <form  onSubmit={this.handleSubmit}>
           <SelectGameLocation />
         <br />
           <SelectGameName />
@@ -34,8 +56,13 @@ class FormCreateGame extends Component {
           <SelectGameBlindsName />
         <br/>
         <div >
-          <label>Buy in: $ </label>
-          <input onChange={e=>this.props.updateNewGame({buy_in: e.target.value })} type="integer"/>
+          <TextField
+          required
+          id="standard-required"
+          label="Buy In: $"
+          defaultValue= ""
+          margin="normal"
+          onChange={e=>this.props.updateNewGame({buy_in: e.target.value })} type="integer"/>
         </div>
         <br/>
         <div>
@@ -43,8 +70,14 @@ class FormCreateGame extends Component {
         </div>
         <br/>
         <div >
-          <label>Cash out: $ </label>
-          <input onChange={e=>this.props.updateNewGame({cash_out: e.target.value})} type="integer"/>
+          <TextField
+          required
+          id="standard-required"
+          label="Cash Out: $"
+          defaultValue= ""
+          margin="normal"
+          onChange={e=>this.props.updateNewGame({cash_out: e.target.value})}
+          type="integer"/>
         </div>
         <br/>
         <div>
@@ -72,5 +105,13 @@ const mapDispatchToProps = {
   createNewGame: createNewGame
 
 }
+FormCreateGame.propTypes = {
+  classes: PropTypes.object.isRequired,
+};
+export default  compose(
+  withStyles(styles, {
+    name: 'FormCreateGame',
+  }),
+  connect(mapStateToProps, mapDispatchToProps))(FormCreateGame);
 
-export default connect(mapStateToProps, mapDispatchToProps)(FormCreateGame);
+// export default connect(mapStateToProps, mapDispatchToProps)(FormCreateGame);

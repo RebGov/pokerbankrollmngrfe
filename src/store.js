@@ -43,10 +43,10 @@ const defaultState = {
     blinds_name_id: '',
     game_location_id: '',
     game_name_id: '',
-    tournament: false,
-    profit: '',
-    minutes: '',
-    won_game: ''
+    tournament: false
+    // profit: '',
+    // minutes: '',
+    // won_game: ''
 
   },
   //newGame: {},

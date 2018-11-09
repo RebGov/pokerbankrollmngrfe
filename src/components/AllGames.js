@@ -24,9 +24,9 @@ class AllGames extends Component {
       <div style={style}>
         <h1>Welcome {this.props.currentUser.first_name}: </h1>
 
-        {this.props.playedGames.map( game => (
+        {this.props.playedGames.map( (game,i) => (
           <div key={game.id}>
-            Game:{game.id} | {game.game_location.place} | Game: {game.game_name.game_title.toUpperCase()} | Blinds: {game.blinds_name.blinds} | {game.tournament === false ? (<b>Cash Game</b>) : (<b>Tournament</b>)}
+            Game: {i+1} | {game.game_location.place} | Game: {game.game_name.game_title.toUpperCase()} | Blinds: {game.blinds_name.blinds} | {game.tournament === false ? (<b>Cash Game</b>) : (<b>Tournament</b>)}
             <br/>
               Start Date & Time: {game.start_date_time} - End Date & Time: {game.end_date_time} | Length of Play: {game.minutes} minutes
               <br/>
@@ -38,11 +38,9 @@ class AllGames extends Component {
                   <li key={note.id}>{note.updated_at} - {note.note}</li>
                 ))}
               </ul>
-
+              <hr/>
           </div>
             ))}
-
-        <Button variant="contained" color="primary" onClick={this.props.logoutUser}>Log Out</Button>
       </div>
     )
   }

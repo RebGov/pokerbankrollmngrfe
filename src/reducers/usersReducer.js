@@ -49,11 +49,11 @@ export default function usersReducer(currentState, action) {
       })
   break;
   case 'GET_USER_GAME_DATA':
-    newState.currentUser = action.payload
-    localStorage.setItem('currentUser', JSON.stringify(newState.currentUser))
+    newState.currentUser = { ...newState.currentUser, ...action.payload }
+    //localStorage.setItem('currentUser', JSON.stringify(newState.currentUser))
   break;
   case 'LOGIN_USER':
-    // newState.currentUser = action.payload.user
+    newState.currentUser = action.payload.user
     newState.jwt = action.payload.jwt
     localStorage.setItem('jwt', newState.jwt)
     //change userLoggedIn = true
@@ -63,13 +63,16 @@ export default function usersReducer(currentState, action) {
     newState.currentUser = action.payload.user
     newState.jwt = action.payload.jwt
     localStorage.setItem('jwt', newState.jwt)
-    localStorage.setItem('currentUser', JSON.stringify(newState.currentUser))
+    // localStorage.setItem('currentUser', JSON.stringify(newState.currentUser))
 
   break;
   case 'UPDATE_NEW_GAME':
     newState.newUserGame = {...newState.newUserGame, ...action.payload }
   break;
   case 'CREATE_NEW_GAME':
+    newState.newUserGame.user_id = newState.currentUser.id
+    // newState.newUserGame.profit = newState.newUserGame.buy_in - newState.newUserGame.cash_out
+    if (newState.newUserGame.start_date_time < newState.newUserGame.end_date_time) {
     fetch('http://localhost:3000/api/v1/played_game/new', {
       method: 'POST',
       headers:{
@@ -87,8 +90,11 @@ export default function usersReducer(currentState, action) {
         store.dispatch({ type: 'DISPLAY_ERROR', payload: payload})
       }
     })
-    //note passing user id on create game need to do so.
-  
+  } else {
+    console.log("End time must be after start time.")
+  }
+
+
   break;
   case 'DISPLAY_ERROR':
   newState.displayError = action.payload

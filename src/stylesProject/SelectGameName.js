@@ -34,7 +34,11 @@ class SelectGameName extends Component {
     return (
   <div>
     <label> Select Game: </label>
-    <Select className="selectGameName" onChange={e => this.props.selectGameName({ id: e.target.value })}>
+    <Select
+      className="selectGameName"
+      value={this.props.newUserGame.game_name_id}
+      onChange={e => this.props.selectGameName({ id: e.target.value})}
+    >
     <MenuItem value="" disabled selected>Select Game</MenuItem>
       {selections.map(gameName => (
         <MenuItem key={gameName.id} value={gameName.id}>{gameName.game_title.toUpperCase()}</MenuItem>
@@ -48,8 +52,8 @@ class SelectGameName extends Component {
 
 function mapStateToProps(state)  {
     return {
-      allGameNames: state.allGameNames
-
+      allGameNames: state.allGameNames,
+      newUserGame: state.newUserGame
     }
 }
 
