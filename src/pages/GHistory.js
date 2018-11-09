@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import AllGames from '../components/AllGames'
 
 class GHistory extends Component {
   render(){
@@ -9,7 +10,9 @@ class GHistory extends Component {
       margin: "1rem"
     };
     return (
-      <div style={style}>Hello Game History Page</div>
+      <div style={style}>Hello Game History Page
+      <AllGames />
+      </div>
     )
   }
 

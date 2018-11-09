@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import Button from '@material-ui/core/Button';
-import { Redirect } from 'react-router-dom';
+// import { Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { logoutUser } from '../actions/userActions'
 
@@ -18,35 +18,30 @@ class AllGames extends Component {
         <h1>Welcome </h1>
         <br/>
         <Button variant="contained" color="primary" onClick={this.props.logoutUser}>Log Out</Button>
-
       </div>
 
     ): (
       <div style={style}>
         <h1>Welcome {this.props.currentUser.first_name}: </h1>
-        <ul>
+
         {this.props.playedGames.map( game => (
           <div key={game.id}>
-            <li>Game:{game.id}, {game.game_location.place}, Game: {game.game_name.game_title}, Blinds: {game.blinds_name.blinds} </li>
-            <ul>
-              <li>Start Date/Time: {game.start_date_time}</li>
-              <li>End Date/Time: {game.end_date_time}</li>
-              {game.tournament === false ? (<li>Cash Game</li>) : (<li>Tournament</li>)}
-              <li>Buy In: ${game.buy_in}</li>
-              <li>Cash Out: ${game.cash_out}</li>
-              {game.won_game === true? (<li>Won Game: True</li>) : (<li>Won Game: False</li>) }
-              <li>Length of Play: {game.minutes} minutes</li>
-              {game.tournament === false ? (<li>Cash Game</li>) : (<li>Tournament</li>)}
-              <li>Notes: </li>
+            Game:{game.id} | {game.game_location.place} | Game: {game.game_name.game_title.toUpperCase()} | Blinds: {game.blinds_name.blinds} | {game.tournament === false ? (<b>Cash Game</b>) : (<b>Tournament</b>)}
+            <br/>
+              Start Date & Time: {game.start_date_time} - End Date & Time: {game.end_date_time} | Length of Play: {game.minutes} minutes
+              <br/>
+              Buy In: ${game.buy_in} | Cash Out: ${game.cash_out} | {game.won_game === true? (<b style={{color:"green"}}>${game.cash_out-game.buy_in}</b>) : (<b style={{color :"red"}}>${game.cash_out-game.buy_in}</b>) }
+              <br/>
+              Notes:
               <ul>
                 {game.notes.map(note => (
                   <li key={note.id}>{note.updated_at} - {note.note}</li>
                 ))}
               </ul>
-            </ul>
+
           </div>
             ))}
-        </ul>
+
         <Button variant="contained" color="primary" onClick={this.props.logoutUser}>Log Out</Button>
       </div>
     )

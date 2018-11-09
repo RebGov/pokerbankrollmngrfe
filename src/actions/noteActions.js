@@ -28,3 +28,8 @@ export function updateCurrentNote(noteAttributes){
     payload: noteAttributes
   })
 }
+export function logoutNotes(){
+  return ({
+    type: 'LOGOUT_Notes'
+  })
+}
