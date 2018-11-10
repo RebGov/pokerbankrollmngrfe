@@ -6,6 +6,7 @@ import { getAllBlindsList } from './actions/blindsNameActions';
 import { getAllLocationsList} from './actions/gameLocationActions';
 import { getAllGameNamesList } from './actions/gameNameActions';
 import { getAllNotes } from './actions/noteActions';
+import { getAllKillStatusList } from './actions/killStatusActions';
 
 let currentUser;
 try {
@@ -41,15 +42,13 @@ const defaultState = {
     buy_in: '',
     cash_out: '',
     blinds_name_id: '',
+    kill_status_id: 1,
     game_location_id: '',
     game_name_id: '',
     tournament: false
-    // profit: '',
-    // minutes: '',
-    // won_game: ''
 
   },
-  //newGame: {},
+
   //selectedGame: {},
 
   newBlindsName:'',
@@ -66,7 +65,12 @@ const defaultState = {
 
   newGameLocation:'',
   allGameLocations: [],
-  selectedGameLocation: []
+  selectedGameLocation: [],
+
+  newKillStatus:'',
+  allKillStatuses: [],
+  selectedKillStatus: [],
+
 }
 
 
@@ -85,6 +89,7 @@ if (defaultState.jwt!=="undefined"|| defaultState.jwt!== false){
   store.dispatch(getAllGameNamesList())
   store.dispatch(getAllBlindsList())
   store.dispatch(getAllLocationsList())
+  store.dispatch(getAllKillStatusList())
 } else {
   console.log("not yet loaded")
 }

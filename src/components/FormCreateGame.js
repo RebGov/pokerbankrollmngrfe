@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { withRouter } from 'react-router';
 import PropTypes from 'prop-types';
 import compose from 'recompose/compose';
 //import classNames from 'classnames';
@@ -11,10 +12,11 @@ import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import StartDateTime from '../stylesProject/StartDateTime';
 import EndDateTime from '../stylesProject/EndDateTime';
-import SelectGameLocation from '../stylesProject/SelectGameLocation'
-import SelectGameBlindsName from '../stylesProject/SelectGameBlindsName'
-import SelectGameName from '../stylesProject/SelectGameName'
-import {updateNewGame, createNewGame } from '../actions/userActions'
+import SelectGameLocation from '../stylesProject/SelectGameLocation';
+import SelectGameBlindsName from '../stylesProject/SelectGameBlindsName';
+import SelectGameName from '../stylesProject/SelectGameName';
+import SelectKillStatus from '../stylesProject/SelectKillStatus';
+import {updateNewGame, createNewGame } from '../actions/userActions';
 
 const styles = theme => ({
   container: {
@@ -55,6 +57,8 @@ class FormCreateGame extends Component {
         <br/>
           <SelectGameBlindsName />
         <br/>
+          <SelectKillStatus />
+          <br/>
         <div >
           <TextField
           required
@@ -85,7 +89,7 @@ class FormCreateGame extends Component {
         </div>
         <br/>
         </form>
-        <Button variant="contained" color="primary" onClick={this.props.createNewGame} >Submit New Game</Button>
+        <Button variant="contained" color="primary" onClick={e => this.props.createNewGame(e, this.props.history)} >Submit New Game</Button>
 
       </div>
     )
@@ -112,6 +116,6 @@ export default  compose(
   withStyles(styles, {
     name: 'FormCreateGame',
   }),
-  connect(mapStateToProps, mapDispatchToProps))(FormCreateGame);
+  connect(mapStateToProps, mapDispatchToProps))(withRouter(FormCreateGame));
 
 // export default connect(mapStateToProps, mapDispatchToProps)(FormCreateGame);

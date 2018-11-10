@@ -50,6 +50,8 @@ export default function usersReducer(currentState, action) {
   break;
   case 'GET_USER_GAME_DATA':
     newState.currentUser = { ...newState.currentUser, ...action.payload }
+
+
     //localStorage.setItem('currentUser', JSON.stringify(newState.currentUser))
   break;
   case 'LOGIN_USER':
@@ -85,7 +87,9 @@ export default function usersReducer(currentState, action) {
       .then( resp => resp.json())
       .then( payload => {
         if(!payload.error){
-        store.dispatch({ type: 'GET_USER_GAME_DATA', payload: payload})
+        // action.history.push('/:user/history')
+        store.dispatch({ type: 'GET_USER_GAME_DATA', payload: payload, history: action.history})
+
       } else {
         store.dispatch({ type: 'DISPLAY_ERROR', payload: payload})
       }
@@ -93,9 +97,13 @@ export default function usersReducer(currentState, action) {
   } else {
     console.log("End time must be after start time.")
   }
-
-
   break;
+  // case 'RE_GET_USER_GAME_DATA':
+  // newState.currentUser = { ...newState.currentUser, ...action.payload }
+  // // store.dispatch({ type: 'RENDER_HISTORY_PAGE', payload: payload, history: action.history})
+  // break;
+  case 'RENDER_HISTORY_PAGE':
+  // action.history.push('/:user/history')
   case 'DISPLAY_ERROR':
   newState.displayError = action.payload
   break;

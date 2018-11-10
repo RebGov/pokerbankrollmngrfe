@@ -49,9 +49,10 @@ export function updateNewGame(gameAttributes){
     payload: gameAttributes
   })
 }
-export function createNewGame(jwt){
+export function createNewGame(e, history){
   return ({
-    type: 'CREATE_NEW_GAME'
+    type: 'CREATE_NEW_GAME',
+    history: history
   })
 }
 export function logoutUser(){

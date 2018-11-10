@@ -26,11 +26,11 @@ class AllGames extends Component {
 
         {this.props.playedGames.map( (game,i) => (
           <div key={game.id}>
-            Game: {i+1} | {game.game_location.place} | Game: {game.game_name.game_title.toUpperCase()} | Blinds: {game.blinds_name.blinds} | {game.tournament === false ? (<b>Cash Game</b>) : (<b>Tournament</b>)}
+            Game: {i+1} | {game.game_location.poker_room} | Game: {game.game_name.game_title.toUpperCase()} | Blinds: {game.blinds_name.blinds} | {game.tournament === false ? (<b>Cash Game</b>) : (<b>Tournament</b>)}
             <br/>
-              Start Date & Time: {game.start_date_time} - End Date & Time: {game.end_date_time} | Length of Play: {game.minutes} minutes
+              Start Date & Time: {game.start_date_time} - End Date & Time: {game.end_date_time} | Length of Play: {game.minutes / 60} hours
               <br/>
-              Buy In: ${game.buy_in} | Cash Out: ${game.cash_out} | {game.won_game === true? (<b style={{color:"green"}}>${game.cash_out-game.buy_in}</b>) : (<b style={{color :"red"}}>${game.cash_out-game.buy_in}</b>) }
+              Buy In: ${game.buy_in} | Cash Out: ${game.cash_out} | {game.won_game === true ? (<b style={{color:"green"}}>${game.profit}</b>) : (<b style={{color :"red"}}>${game.profit}</b>) }
               <br/>
               Notes:
               <ul>
@@ -58,3 +58,9 @@ const mapDispatchToProps = {
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(AllGames);
+
+// array.sort(function(a, b) {
+//     a = new Date(a.dateModified);
+//     b = new Date(b.dateModified);
+//     return a>b ? -1 : a<b ? 1 : 0;
+// });

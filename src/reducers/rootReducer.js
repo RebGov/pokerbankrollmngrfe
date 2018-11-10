@@ -6,6 +6,7 @@ import notesReducer from './notesReducer';
 import gameNamesReducer from './gameNamesReducer';
 import blindsNamesReducer from './blindsNamesReducer';
 import gameLocationsReducer from './gameLocationsReducer';
+import killStatusesReducer from './killStatusesReducer';
 
 
 // const rootReducer = combineReducers({
@@ -24,6 +25,7 @@ const rootReducer = (currentState, action) => {
   newState = gameNamesReducer(newState, action)
   newState = blindsNamesReducer(newState, action)
   newState = gameLocationsReducer(newState, action)
+  newState = killStatusesReducer(newState, action)
 
 
 

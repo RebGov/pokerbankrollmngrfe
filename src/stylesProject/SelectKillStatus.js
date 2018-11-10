@@ -11,7 +11,7 @@ import MenuItem from '@material-ui/core/MenuItem';
 // import FormHelperText from '@material-ui/core/FormHelperText';
 // import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
-import { selectGameLocation } from '../actions/gameLocationActions'
+import { selectKillStatus } from '../actions/killStatusActions'
 
 const styles = theme => ({
   root: {
@@ -27,23 +27,22 @@ const styles = theme => ({
   },
 })
 
-class SelectGameLocation extends Component {
+class SelectKillStatus extends Component {
 
 
   render(){
-    let selections = this.props.allGameLocations || []
-    console.log("select game Location", selections)
+    let selections = this.props.allKillStatuses || []
     return (
       <div>
 
-        <label> Select Location: </label>
-          <Select className="selectLoction" value={this.props.newUserGame.game_location_id} onChange={e => this.props.selectGameLocation({ id: e.target.value })}>
-            <MenuItem value="" disabled selected>Select Location</MenuItem>
-            {selections.map(location => (
-            <MenuItem key={location.id} value={location.id}>{location.poker_room}</MenuItem>
+        <label> Select Kill: </label>
+          <Select className="selectKill" value={this.props.newUserGame.kill_status_id} onChange={e => this.props.selectKillStatus({ id: e.target.value })}>
+            <MenuItem value="" disabled selected>Select Kill</MenuItem>
+            {selections.map(killStatus => (
+            <MenuItem key={killStatus.id} value={killStatus.id}>{killStatus.kill}</MenuItem>
             ))}
           </Select>
-          <button onClick={console.log("clicked + button") }> + </button>
+
 
       </div>
     )
@@ -52,18 +51,18 @@ class SelectGameLocation extends Component {
 
 function mapStateToProps(state)  {
   return {
-    allGameLocations: state.allGameLocations,
+    allKillStatuses: state.allKillStatuses,
     newUserGame: state.newUserGame
 
   }
 }
 
 const mapDispatchToProps = {
-  selectGameLocation: selectGameLocation
+  selectKillStatus: selectKillStatus
 }
 
 export default  compose(
   withStyles(styles, {
-    name: 'SelectGameLocation',
+    name: 'SelectKillStatus',
   }),
-  connect(mapStateToProps, mapDispatchToProps))(SelectGameLocation);
+  connect(mapStateToProps, mapDispatchToProps))(SelectKillStatus);
