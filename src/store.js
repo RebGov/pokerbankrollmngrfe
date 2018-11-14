@@ -52,7 +52,10 @@ const defaultState = {
     game_name_id: '',
     tournament: false
   },
-  selectedGame: [],
+  selectedGame: {
+    playedGame:{}
+  },
+  selectedGameEmpty: true,
 
   gameFilters: {
     blinds_name_id: '',
@@ -106,7 +109,7 @@ const enhancer = composeEnhancers(
 
 const store = createStore(rootReducer, defaultState, enhancer)
 console.log("&&&&", defaultState)
-if (defaultState.jwt!=="undefined"|| defaultState.jwt!== false) {
+if (defaultState.jwt!=="undefined" && defaultState.jwt!== false) {
   store.dispatch(getUserProfile(defaultState.jwt))
   store.dispatch(getAllNotes())
   store.dispatch(getAllGameNamesList())

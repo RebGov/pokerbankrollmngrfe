@@ -1,20 +1,20 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import {withRouter} from 'react-router'
+
 
 class CurrentGame extends Component {
   render(){
     console.log('currentGame:', this.props.selectedGame)
-    const style={
-      // border: "1px solid teal",
-      padding: "1rem",
-      margin: "1rem"
-    };
-    return (
-      <div style={style}>
-      <h1>Played Session:</h1>
-      <h4>{this.props.selectedGame.id}</h4>
+    console.log("State", this.props.selectedGameEmpty)
+
+    return ((this.props.selectedGameEmpty) ? (null):(
+
+          <div>
+          <h1>Played Session:</h1>
+        <h4>{this.props.selectedGame.id}</h4>
       </div>
-    )
+    ))
   }
 
 }
@@ -28,4 +28,4 @@ const mapDispatchToProps = {
 
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(CurrentGame);
+export default connect(mapStateToProps, mapDispatchToProps)(withRouter(CurrentGame));

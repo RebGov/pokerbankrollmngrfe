@@ -24,6 +24,7 @@ import { logoutUser } from '../actions/userActions';
 const styles = {
   padding: "1rem",
   margin: "1rem",
+  backgroundColor: '#C1ADAB',
   list: {
     width: 250,
   },
@@ -47,28 +48,27 @@ class MenuBar extends Component {
     const { classes } = this.props;
 
     const sideList = (
-      <div className={classes.list}>
+      <div className={classes.list} >
         <h2>{this.props.currentUser.first_name}</h2>
         <h4>MENU</h4>
         <Divider />
-        <List>
-          <Link to={{pathname:'/home'}}>
+        <List style={{backgroundColor: '#C1ADAB'}}>
+          <Link className="link" to={{pathname:'/home'}}>
             <ListItem button key={'Home'}  >
               <ListItemIcon><HomeIcon /></ListItemIcon>
               <ListItemText primary={'Home'} />
             </ListItem>
           </Link>
         </List>
-        <Divider />
-        <List>
-          <Link to={{pathname:'/:user/history'}}>
+        <List style={{backgroundColor: '#C1ADAB', textDecoration:" none"}}>
+          <Link style={{textDecoration:" none"}} to={{pathname:'/:user/history'}}>
             <ListItem button key={'History'} >
               <ListItemIcon><AssignmentIcon /></ListItemIcon>
               <ListItemText primary={'History'} />
             </ListItem>
           </Link>
         </List>
-        <List>
+        <List style={{backgroundColor: '#C1ADAB'}}>
           <Link to={{pathname:`/:user/NewGame`}}>
             <ListItem button key={'New Game'} >
               <ListItemIcon><LibraryAddIcon /></ListItemIcon>
@@ -76,7 +76,7 @@ class MenuBar extends Component {
             </ListItem>
           </Link>
         </List>
-        <List>
+        <List style={{backgroundColor: '#C1ADAB'}}>
           <Link to={{pathname:'/:user/Statistics'}}>
             <ListItem button key={'Statistics'} >
               <ListItemIcon><InsertChartIcon /></ListItemIcon>
@@ -96,10 +96,11 @@ class MenuBar extends Component {
 
 //line96 giving warning no nested button - button cannot appear as a descendent of button
     return (
-      <div>
+      <div >
         <Button onClick={this.toggleDrawer('left', true)}><MenuIcon style={{color: 'white'}} /></Button>
         <Drawer open={this.state.left} onClose={this.toggleDrawer('left', false)}>
           <div
+
             tabIndex={0}
             role="button"
             onClick={this.toggleDrawer('left', false)}

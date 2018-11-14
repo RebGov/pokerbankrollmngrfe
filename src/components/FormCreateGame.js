@@ -24,8 +24,9 @@ const styles = theme => ({
     flexWrap: 'wrap',
   },
   textField: {
-    marginLeft: theme.spacing.unit,
-    marginRight: theme.spacing.unit,
+    textAlign: "center",
+    // marginLeft: theme.spacing.unit,
+    // marginRight: theme.spacing.unit,
     width: 200,
   },
   dense: {
@@ -40,15 +41,11 @@ const styles = theme => ({
 class FormCreateGame extends Component {
 
   render(){
-    // const { classes } = this.props;
-    const style={
-      border: "1px solid green",
-      padding: "1rem",
-      margin: "1rem"
-    };
+    const { classes } = this.props;
+
 
     return (
-      <div style={style}>
+      <div style={styles.container}>
       <h4>Hello Create Played Game Form</h4>
         <form  onSubmit={this.handleSubmit}>
           <SelectGameLocation />
@@ -56,10 +53,10 @@ class FormCreateGame extends Component {
           <SelectGameName />
 
           <SelectGameBlindsName />
-        
+
           <SelectKillStatus />
         <div >
-          <TextField
+          <TextField style={styles.textField}
           required
           id="standard-required"
           label="Buy In: $"
@@ -69,11 +66,12 @@ class FormCreateGame extends Component {
         </div>
         <br/>
         <div>
-        <StartDateTime updateNewGame={this.props.updateNewGame} value={this.props.newUserGame.start_date_time}/>
+        <StartDateTime style={styles.textField} updateNewGame={this.props.updateNewGame} value={this.props.newUserGame.start_date_time}/>
         </div>
         <br/>
         <div >
           <TextField
+          style={styles.textField}
           required
           id="standard-required"
           label="Cash Out: $"
@@ -84,7 +82,7 @@ class FormCreateGame extends Component {
         </div>
         <br/>
         <div>
-        <EndDateTime updateNewGame={this.props.updateNewGame} value={this.props.newUserGame.end_date_time} />
+        <EndDateTime style={styles.textField} updateNewGame={this.props.updateNewGame} value={this.props.newUserGame.end_date_time} />
         </div>
         <br/>
         </form>

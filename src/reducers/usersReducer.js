@@ -1,5 +1,12 @@
-import { store } from '../store';
+import { store, defaultState } from '../store';
 import { getUserGameData } from '../actions/userActions';
+import { getAllGameNamesList } from '../actions/gameNameActions';
+import { getAllLocationsList } from '../actions/gameLocationActions';
+import { getAllBlindsList } from '../actions/blindsNameActions';
+import { getAllKillStatusList } from '../actions/killStatusActions';
+import { getAllNotes } from '../actions/noteActions';
+
+
 
 export default function usersReducer(currentState, action) {
   // console.log(store, defaultState)
@@ -59,6 +66,12 @@ export default function usersReducer(currentState, action) {
     newState.jwt = action.payload.jwt
     localStorage.setItem('jwt', newState.jwt)
     localStorage.setItem('user_id', newState.user_id)
+    store.dispatch(getAllNotes())
+    store.dispatch(getAllGameNamesList())
+    store.dispatch(getAllBlindsList())
+    store.dispatch(getAllLocationsList())
+    store.dispatch(getAllKillStatusList())
+    store.dispatch(getUserGameData())
   break;
   case 'GET_USER_PROFILE':
     newState.currentUser = { ...newState.currentUser, ...action.payload}
@@ -112,14 +125,17 @@ export default function usersReducer(currentState, action) {
   break;
   case 'LOGOUT_USER':
     localStorage.clear()
-    newState.jwt=false
-    // newState = defaultState
+    newState = defaultState
+    newState.jwt = false
+    newState.user_id = ""
+
     // newState.isLoggedIn = false
     // action.history.push('/')
     //redirect to home page
     break;
     case 'SELECTED_GAME':
     newState.selectedGame = {...newState.selectedGame, ...action.payload }
+    newState.selectedGameEmpty = false
     break;
   default:
 

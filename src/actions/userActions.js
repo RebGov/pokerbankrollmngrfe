@@ -93,7 +93,9 @@ export function selectOneGame(gameId, history){
         dispatch( { type: 'SELECTED_GAME', payload: payload } )
       // }
     )
+    // .then(console.log(payload))
      .then(history.push(`/${localStorage.user_id}/CurrentGame`))
+
   }
 
 }

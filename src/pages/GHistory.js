@@ -25,7 +25,7 @@ class GHistory extends Component {
       margin: "1rem"
     };
 
-    return this.props.playedGames === undefined || this.props.playedGames === 0 ?  (<div style={style} className="noHistory" > <h1>Your Personal History at Ante Up Poker Bankroll Suite: </h1><Link to={{pathname: `/${localStorage.user_id}/NewGame`}}><h2>Please Enter A Game Session.</h2></Link> </div> ):
+    return ((this.props.playedGames === undefined || this.props.playedGames == 0) ?  (<div style={style} className="noHistory" > <h1>Your Personal History at Ante Up Poker Bankroll Suite: </h1><Link to={{pathname: `/${localStorage.user_id}/NewGame`}}><h2>Please Enter A Game Session.</h2></Link> </div> ):
     (
       <div style={style} className="history">
       <h1>{this.props.currentUser.first_name}'s Ante Up Played Sessions History:</h1>
@@ -38,6 +38,7 @@ class GHistory extends Component {
 
       </div>
     )
+  )
   }
 
 }

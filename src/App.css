@@ -1,5 +1,12 @@
 .App {
   text-align: center;
+
+    background-image: url("../src/images/chipsBlackBgrd.jpg");
+    background-size: cover;
+    text-align: center;
+    min-height: 150vh;
+
+
 }
 /*
 .App-logo {

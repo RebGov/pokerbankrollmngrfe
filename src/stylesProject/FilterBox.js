@@ -71,7 +71,7 @@ handleClickOpen = () => {
 
     return (
       <div>
-        <Button variant="contained" color="secondary" onClick={this.handleClickOpen}>Filter Bankroll History</Button>
+        <Button variant="contained" color="primary" onClick={this.handleClickOpen}>Filter Bankroll History</Button>
         <Dialog
           disableBackdropClick
           disableEscapeKeyDown
