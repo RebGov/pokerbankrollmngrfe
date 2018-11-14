@@ -16,12 +16,12 @@ export function getAllGameNamesList(){
   }
 }
 
-export function updateNewGameName(gameNameAttributes){
-  return ({
-    type: 'UPDATE_NEW_GAME_NAME',
-    payload: gameNameAttributes
-  })
-}
+// export function updateNewGameName(gameNameAttributes){
+//   return ({
+//     type: 'UPDATE_NEW_GAME_NAME',
+//     payload: gameNameAttributes
+//   })
+// }
 export function UPDATE_CURRENT_GAME_NAME(gameNameAttributes){
   return ({
     type: 'UPDATE_CURRENT_GAME_NAME',
@@ -34,5 +34,12 @@ export function selectGameName(payload){
   return ({
     type: 'UPDATE_NEW_GAME',
     payload: { game_name_id: payload.id }
+  })
+}
+export function setGameNameSearch(payload){
+  // console.log('GameLocation: ', payload)
+  return ({
+    type: 'UPDATE_GAME_FILTERS',
+    payload: {game_name_id: payload.id}
   })
 }

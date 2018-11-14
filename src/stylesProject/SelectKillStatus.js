@@ -1,16 +1,13 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-// import PropTypes from 'prop-types';
 import compose from 'recompose/compose';
 import { withStyles } from '@material-ui/core/styles';
-// import Input from '@material-ui/core/Input';
-// import OutlinedInput from '@material-ui/core/OutlinedInput';
-// import FilledInput from '@material-ui/core/FilledInput';
-import InputLabel from '@material-ui/core/InputLabel';
+import PropTypes from 'prop-types';
 import MenuItem from '@material-ui/core/MenuItem';
-// import FormHelperText from '@material-ui/core/FormHelperText';
-// import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
+import FormHelperText from '@material-ui/core/FormHelperText';
+import FormControl from '@material-ui/core/FormControl';
+import InputLabel from '@material-ui/core/InputLabel';
 import { selectKillStatus } from '../actions/killStatusActions'
 
 const styles = theme => ({
@@ -31,17 +28,27 @@ class SelectKillStatus extends Component {
 
 
   render(){
+    const { classes } = this.props;
     let selections = this.props.allKillStatuses || []
     return (
       <div>
-
-        <label> Select Kill: </label>
-          <Select className="selectKill" value={this.props.newUserGame.kill_status_id} onChange={e => this.props.selectKillStatus({ id: e.target.value })}>
+      <FormControl required className={classes.formControl}>
+        <InputLabel htmlFor="killpot-required">Kill Pot: </InputLabel>
+          <Select
+          id="standard-required"
+          className="selectKill" value={this.props.newUserGame.kill_status_id} onChange={e => this.props.selectKillStatus({ id: e.target.value })}
+          name="killpot"
+          inputProps={{
+            id: 'killpot-required',
+          }}
+          className={classes.selectEmpty}>
             <MenuItem value="" disabled selected>Select Kill</MenuItem>
             {selections.map(killStatus => (
             <MenuItem key={killStatus.id} value={killStatus.id}>{killStatus.kill}</MenuItem>
             ))}
           </Select>
+          <FormHelperText>Required</FormHelperText>
+        </FormControl>
 
 
       </div>
@@ -60,7 +67,9 @@ function mapStateToProps(state)  {
 const mapDispatchToProps = {
   selectKillStatus: selectKillStatus
 }
-
+SelectKillStatus.propTypes = {
+  classes: PropTypes.object.isRequired,
+};
 export default  compose(
   withStyles(styles, {
     name: 'SelectKillStatus',

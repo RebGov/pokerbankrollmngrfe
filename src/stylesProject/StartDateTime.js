@@ -22,6 +22,7 @@ class StartDateTime extends PureComponent {
         <div className="picker">
           <DateTimePicker
           value={this.props.value}
+          maxDate={new Date()}
           onChange={date => this.props.updateNewGame({ start_date_time: date })}
           label="Start Date Time"
             showTodayButton

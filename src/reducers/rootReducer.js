@@ -1,4 +1,5 @@
 // import { combineReducers } from "redux";
+//import { logoutUser } from '../actions/userActions'
 
 import usersReducer from './usersReducer';
 // import playedGamesReducer from './playedGamesReducer';
@@ -26,11 +27,15 @@ const rootReducer = (currentState, action) => {
   newState = blindsNamesReducer(newState, action)
   newState = gameLocationsReducer(newState, action)
   newState = killStatusesReducer(newState, action)
-
-
-
   return newState
 }
+
+// const rootReducer = (state, action) => {
+//   if (action.type === 'LOGOUT_USER'){
+//     state = undefined
+//   }
+//   return appReducer(state, action)
+// }
 
 export default rootReducer;
 

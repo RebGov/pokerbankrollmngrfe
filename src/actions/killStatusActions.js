@@ -36,3 +36,10 @@ export function selectKillStatus(payload){
     payload: { kill_status_id: payload.id }
   })
 }
+export function setKillStatusSearch(payload){
+  // console.log('GameLocation: ', payload)
+  return ({
+    type: 'UPDATE_GAME_FILTERS',
+    payload: {kill_status_id: payload.id}
+  })
+}

@@ -1,16 +1,13 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-// import PropTypes from 'prop-types';
 import compose from 'recompose/compose';
 import { withStyles } from '@material-ui/core/styles';
-// import Input from '@material-ui/core/Input';
-// import OutlinedInput from '@material-ui/core/OutlinedInput';
-// import FilledInput from '@material-ui/core/FilledInput';
-import InputLabel from '@material-ui/core/InputLabel';
+import PropTypes from 'prop-types';
 import MenuItem from '@material-ui/core/MenuItem';
-// import FormHelperText from '@material-ui/core/FormHelperText';
-// import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
+import FormHelperText from '@material-ui/core/FormHelperText';
+import FormControl from '@material-ui/core/FormControl';
+import InputLabel from '@material-ui/core/InputLabel';
 import { selectGameLocation } from '../actions/gameLocationActions'
 
 const styles = theme => ({
@@ -28,22 +25,32 @@ const styles = theme => ({
 })
 
 class SelectGameLocation extends Component {
-
-
   render(){
+    const { classes } = this.props;
     let selections = this.props.allGameLocations || []
-    console.log("select game Location", selections)
     return (
       <div>
 
-        <label> Select Location: </label>
-          <Select className="selectLoction" value={this.props.newUserGame.game_location_id} onChange={e => this.props.selectGameLocation({ id: e.target.value })}>
-            <MenuItem value="" disabled selected>Select Location</MenuItem>
-            {selections.map(location => (
-            <MenuItem key={location.id} value={location.id}>{location.poker_room}</MenuItem>
-            ))}
-          </Select>
-          <button onClick={console.log("clicked + button") }> + </button>
+        <FormControl required className={classes.formControl}>
+          <InputLabel htmlFor="location-required">Location: </InputLabel>
+          <Select
+            id="standard-required"
+            className="selectLoction"
+            value={this.props.newUserGame.game_location_id}
+            onChange={e => this.props.selectGameLocation({ id: e.target.value })}
+            name="Location"
+            inputProps={{
+              id: 'location-required',
+            }}
+            className={classes.selectEmpty}
+          >
+          <MenuItem value="" disabled selected>Select Location</MenuItem>
+          {selections.map(location => (
+          <MenuItem key={location.id} value={location.id}>{location.poker_room.toUpperCase()}</MenuItem>
+          ))}
+        </Select>
+          <FormHelperText>Required</FormHelperText>
+        </FormControl>
 
       </div>
     )
@@ -60,8 +67,11 @@ function mapStateToProps(state)  {
 
 const mapDispatchToProps = {
   selectGameLocation: selectGameLocation
-}
 
+}
+SelectGameLocation.propTypes = {
+  classes: PropTypes.object.isRequired,
+};
 export default  compose(
   withStyles(styles, {
     name: 'SelectGameLocation',

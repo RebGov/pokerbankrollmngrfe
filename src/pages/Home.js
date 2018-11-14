@@ -1,31 +1,18 @@
 import React, { Component } from 'react';
-// import './App.css';
 import { connect } from 'react-redux';
-// import SignUp from '../components/SignUp';
-// import AllGames from '../components/AllGames'
-// import { Link } from 'react-router-dom';
-// import { getUserData } from '../actions/userActions';
-// import { getAllBlindsList } from '../actions/blindsNameActions';
-// import { getAllLocationsList} from '../actions/gameLocationActions';
-// import { getAllGameNamesList } from '../actions/gameNameActions';
-// import { getAllNotes } from '../actions/noteActions';
-
 
 class Home extends Component {
-  componentDidMount(){
-
-
-  }
-  componentWillMount(){
-    //this.props.updateUserPlayedGame()
-    //this.props.newUserPlayedGame()
-  }
-
   render() {
-  // console.log('HomePage: ',this.props.jwt)
+    const style={
+      // border: "1px solid teal",
+      padding: "1rem",
+      margin: "1rem"
+    };
+  // console.log('HomePage: ',this.props.currentUser.id)
   return (
-    <div>
-    Hello Home
+    <div style={style}>
+    <h1>Welcome to Ante Up Poker Suite</h1>
+
     </div>
     )
   }
@@ -34,14 +21,11 @@ class Home extends Component {
 const mapStateToProps = ( state ) => {
   return {
       jwt: state.jwt,
+      currentUser: state.currentUser.id
   }
 }
 const mapDispatchToProps = {
-  // getAllNotes: getAllNotes,
-  // getAllGameNamesList: getAllGameNamesList,
-  // getAllBlindsList: getAllBlindsList,
-  // getAllLocationsList: getAllLocationsList,
-  // getUserData: getUserData
+
 }
 
 

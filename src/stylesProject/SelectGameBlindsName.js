@@ -1,22 +1,15 @@
 import React, {  Component } from 'react';
 import { connect } from 'react-redux';
-import PropTypes from 'prop-types';
-import classNames from 'classnames';
-import MenuItem from '@material-ui/core/MenuItem';
-import TextField from '@material-ui/core/TextField';
 import compose from 'recompose/compose';
 import { withStyles } from '@material-ui/core/styles';
-// import Input from '@material-ui/core/Input';
-// import OutlinedInput from '@material-ui/core/OutlinedInput';
-// import FilledInput from '@material-ui/core/FilledInput';
-// import InputLabel from '@material-ui/core/InputLabel';
-// import FormHelperText from '@material-ui/core/FormHelperText';
-// import FormControl from '@material-ui/core/FormControl';
+import PropTypes from 'prop-types';
+import MenuItem from '@material-ui/core/MenuItem';
 import Select from '@material-ui/core/Select';
-
+import FormHelperText from '@material-ui/core/FormHelperText';
+import FormControl from '@material-ui/core/FormControl';
+import InputLabel from '@material-ui/core/InputLabel';
 
 import {selectGameBlinds} from '../actions/blindsNameActions'
-
 
 const styles = theme => ({
   root: {
@@ -30,21 +23,7 @@ const styles = theme => ({
   selectEmpty: {
     marginTop: theme.spacing.unit * 2,
   },
-  container: {
-    display: 'flex',
-    flexWrap: 'wrap',
-  },
-  // textField: {
-  //   marginLeft: theme.spacing.unit,
-  //   marginRight: theme.spacing.unit,
-  //   width: 200,
-  // },
-  // dense: {
-  //   marginTop: 19,
-  // },
-  // menu: {
-  //   width: 200,
-  // },
+
 });
 
 
@@ -53,23 +32,32 @@ class SelectGameBlindsName extends Component {
 
 
   render(){
-    // const { classes } = this.props;
+    const { classes } = this.props;
     const selections = this.props.allBlindsNames || {}
     // const id = selection.id;
-    console.log("select Blinds", selections)
+
     return (
       <div>
-        <label> Select Blinds: </label>
+      <FormControl required className={classes.formControl}>
+        <InputLabel htmlFor="blinds-required">Blinds: </InputLabel>
         <Select
           className="selectBlindsName"
+          id="standard-required"
           value={this.props.newUserGame.blinds_name_id}
-          onChange={e => this.props.selectGameBlinds({ id: e.target.value })}>
+          onChange={e => this.props.selectGameBlinds({ id: e.target.value })}
+          name="blinds"
+          inputProps={{
+            id: 'blinds-required',
+          }}
+          className={classes.selectEmpty}>
           <MenuItem value="" disabled selected>Select Blinds</MenuItem>
             {selections.map(blindsName => (
               <MenuItem key={blindsName.id} value={blindsName.id}>{blindsName.blinds}</MenuItem>
             ))}
-        </Select>
-        <button onClick={console.log("clicked + button") }> + </button>
+            </Select>
+              <FormHelperText>Required</FormHelperText>
+            </FormControl>
+      
       </div>
     )
   }

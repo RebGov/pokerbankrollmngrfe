@@ -20,10 +20,10 @@ import InsertChartIcon from '@material-ui/icons/InsertChart';
 import LibraryAddIcon from '@material-ui/icons/LibraryAdd';
 import { logoutUser } from '../actions/userActions';
 
-// import InboxIcon from '@material-ui/icons/MoveToInbox';
-// import MailIcon from '@material-ui/icons/Mail';
 
 const styles = {
+  padding: "1rem",
+  margin: "1rem",
   list: {
     width: 250,
   },
@@ -48,7 +48,7 @@ class MenuBar extends Component {
 
     const sideList = (
       <div className={classes.list}>
-        <h2>UserName</h2>
+        <h2>{this.props.currentUser.first_name}</h2>
         <h4>MENU</h4>
         <Divider />
         <List>
@@ -69,7 +69,7 @@ class MenuBar extends Component {
           </Link>
         </List>
         <List>
-          <Link to={{pathname:'/:user/NewGame'}}>
+          <Link to={{pathname:`/:user/NewGame`}}>
             <ListItem button key={'New Game'} >
               <ListItemIcon><LibraryAddIcon /></ListItemIcon>
               <ListItemText primary={'New Game'} />
@@ -116,7 +116,7 @@ class MenuBar extends Component {
 function mapStateToProps(state)  {
     return {
       currentUser: state.currentUser,
-      playedGames: state.currentUser.played_games
+      userPlayedGames: state.userPlayedGames
     }
 }
 

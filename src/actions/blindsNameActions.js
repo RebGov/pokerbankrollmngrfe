@@ -34,7 +34,13 @@ export function selectGameBlinds(payload){
     payload: { blinds_name_id: payload.id }
   })
 }
-
+export function setBlindsNameSearch(payload){
+  // console.log('GameLocation: ', payload)
+  return ({
+    type: 'UPDATE_GAME_FILTERS',
+    payload: {blinds_name_id: payload.id}
+  })
+}
 // export function addInputBlindsName = () => {
 //   this.props.saveSelectBlindsNameValue({blinds_name_attribute:e.target.value})
 // }

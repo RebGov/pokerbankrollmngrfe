@@ -1,4 +1,5 @@
-import {store } from '../store';
+import { store } from '../store';
+import { getUserGameData } from '../actions/userActions';
 
 export default function usersReducer(currentState, action) {
   // console.log(store, defaultState)
@@ -49,38 +50,42 @@ export default function usersReducer(currentState, action) {
       })
   break;
   case 'GET_USER_GAME_DATA':
-    newState.currentUser = { ...newState.currentUser, ...action.payload }
-
-
-    //localStorage.setItem('currentUser', JSON.stringify(newState.currentUser))
+    newState.userPlayedGames = { ...newState.userPlayedGames, ...action.payload }
   break;
   case 'LOGIN_USER':
     newState.currentUser = action.payload.user
+    newState.user_id = action.payload.user.id
+    newState.isLoggedIn = true
     newState.jwt = action.payload.jwt
     localStorage.setItem('jwt', newState.jwt)
-    //change userLoggedIn = true
-    // localStorage.setItem('currentUser', JSON.stringify(newState.currentUser))
+    localStorage.setItem('user_id', newState.user_id)
+  break;
+  case 'GET_USER_PROFILE':
+    newState.currentUser = { ...newState.currentUser, ...action.payload}
   break;
   case 'LOGIN_NEW_USER':
     newState.currentUser = action.payload.user
+    newState.user_id = action.payload.user.id
+    newState.isLoggedIn = true
     newState.jwt = action.payload.jwt
     localStorage.setItem('jwt', newState.jwt)
-    // localStorage.setItem('currentUser', JSON.stringify(newState.currentUser))
-
+    localStorage.setItem('user_id', newState.user_id)
   break;
   case 'UPDATE_NEW_GAME':
     newState.newUserGame = {...newState.newUserGame, ...action.payload }
   break;
+  case 'UPDATE_GAME_FILTERS':
+    newState.gameFilters = { ...newState.gameFilters, ...action.payload }
+    store.dispatch(getUserGameData(newState.gameFilters))
+  break;
   case 'CREATE_NEW_GAME':
     newState.newUserGame.user_id = newState.currentUser.id
-    // newState.newUserGame.profit = newState.newUserGame.buy_in - newState.newUserGame.cash_out
     if (newState.newUserGame.start_date_time < newState.newUserGame.end_date_time) {
-    fetch('http://localhost:3000/api/v1/played_game/new', {
+    fetch('http://localhost:3000/api/v1/played_games', {
       method: 'POST',
       headers:{
         'Content-Type': 'application/json',
         'Accept': 'application/json'
-
       },
       body: JSON.stringify(newState.newUserGame)
       })
@@ -88,34 +93,33 @@ export default function usersReducer(currentState, action) {
       .then( payload => {
         if(!payload.error){
         // action.history.push('/:user/history')
+        //NEED info to refresh
         store.dispatch({ type: 'GET_USER_GAME_DATA', payload: payload, history: action.history})
-
       } else {
         store.dispatch({ type: 'DISPLAY_ERROR', payload: payload})
       }
+      action.history.push('/:user/history')
     })
   } else {
     console.log("End time must be after start time.")
   }
   break;
-  // case 'RE_GET_USER_GAME_DATA':
-  // newState.currentUser = { ...newState.currentUser, ...action.payload }
-  // // store.dispatch({ type: 'RENDER_HISTORY_PAGE', payload: payload, history: action.history})
-  // break;
   case 'RENDER_HISTORY_PAGE':
   // action.history.push('/:user/history')
+  break;
   case 'DISPLAY_ERROR':
-  newState.displayError = action.payload
+    newState.displayError = action.payload
   break;
   case 'LOGOUT_USER':
-
     localStorage.clear()
     newState.jwt=false
-
-
-    //clear out all state
+    // newState = defaultState
+    // newState.isLoggedIn = false
+    // action.history.push('/')
     //redirect to home page
-
+    break;
+    case 'SELECTED_GAME':
+    newState.selectedGame = {...newState.selectedGame, ...action.payload }
     break;
   default:
 

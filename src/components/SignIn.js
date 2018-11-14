@@ -9,11 +9,6 @@ import { loginUser, updateCurrentUser } from '../actions/userActions'
 class SignIn extends Component {
 
   render() {
-    const style={
-      border: "1px solid purple",
-      padding: "1rem",
-      margin: "1rem"
-    };
     // console.log('signInPage: ', this.props, this.props.jwt, this.loginUser)
     if (this.props.jwt) return(
       <Redirect
@@ -24,7 +19,7 @@ class SignIn extends Component {
       />
     )
     return (
-      <div style={style}>
+      <div >
         <h1>Sign In</h1>
         <div >
           <label>Email: </label>

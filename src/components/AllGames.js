@@ -1,43 +1,39 @@
 import React, { Component } from 'react';
+import {withRouter} from 'react-router'
 import Button from '@material-ui/core/Button';
 // import { Redirect } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { logoutUser } from '../actions/userActions'
+import { logoutUser } from '../actions/userActions';
+import { selectOneGame } from '../actions/userActions'
+
+
 
 class AllGames extends Component {
+
+
+
   render() {
+    // console.log("allGames: ", this.props.playedGames, this.props.currentUser)
 
 
-    const style={
-      border: "1px solid orange",
-      padding: "1rem",
-      margin: "1rem"
-    };
-    return this.props.playedGames === null ?  (
-      <div style={style}>
-        <h1>Welcome </h1>
-        <br/>
-        <Button variant="contained" color="primary" onClick={this.props.logoutUser}>Log Out</Button>
+    return this.props.playedGames === undefined || this.props.playedGames === 0 ?  (
+      <div >
+      <h1>No History to Show</h1>
       </div>
 
     ): (
-      <div style={style}>
-        <h1>Welcome {this.props.currentUser.first_name}: </h1>
 
-        {this.props.playedGames.map( (game,i) => (
-          <div key={game.id}>
-            Game: {i+1} | {game.game_location.poker_room} | Game: {game.game_name.game_title.toUpperCase()} | Blinds: {game.blinds_name.blinds} | {game.tournament === false ? (<b>Cash Game</b>) : (<b>Tournament</b>)}
+      <div >
+
+      <hr/>
+        {this.props.playedGames.map( (game,index) => (
+          <div key={game.id} onClick={e => this.props.selectOneGame(game.id, this.props.history)}>
+            # {index+1} | Poker Room: {game.game_location.poker_room} | Game: {game.game_name.game_title} | Blinds: {game.blinds_name.blinds} {game.kill_status.kill === "none"? (<b>|</b>):(<em>| KillPot: {game.kill_status.kill} | </em>)} {game.tournament === false ? (<em>Cash Game</em>) : (<em>Tournament</em>)}
             <br/>
               Start Date & Time: {game.start_date_time} - End Date & Time: {game.end_date_time} | Length of Play: {game.minutes / 60} hours
               <br/>
               Buy In: ${game.buy_in} | Cash Out: ${game.cash_out} | {game.won_game === true ? (<b style={{color:"green"}}>${game.profit}</b>) : (<b style={{color :"red"}}>${game.profit}</b>) }
-              <br/>
-              Notes:
-              <ul>
-                {game.notes.map(note => (
-                  <li key={note.id}>{note.updated_at} - {note.note}</li>
-                ))}
-              </ul>
               <hr/>
           </div>
             ))}
@@ -49,18 +45,26 @@ class AllGames extends Component {
 function mapStateToProps(state)  {
     return {
       currentUser: state.currentUser,
-      playedGames: state.currentUser.played_games
+      playedGames: state.userPlayedGames.playedGames
     }
 }
 
 const mapDispatchToProps = {
-  logoutUser: logoutUser
+  logoutUser: logoutUser,
+  selectOneGame: selectOneGame
+
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(AllGames);
+export default connect(mapStateToProps, mapDispatchToProps)(withRouter(AllGames));
 
 // array.sort(function(a, b) {
 //     a = new Date(a.dateModified);
 //     b = new Date(b.dateModified);
 //     return a>b ? -1 : a<b ? 1 : 0;
 // });
+// Notes:
+// <ul>
+//   {game.notes.map(note => (
+//     <li key={note.id}>{note.updated_at} - {note.note}</li>
+//   ))}
+// </ul>

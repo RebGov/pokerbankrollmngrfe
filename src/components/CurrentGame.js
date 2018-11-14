@@ -3,20 +3,24 @@ import { connect } from 'react-redux';
 
 class CurrentGame extends Component {
   render(){
+    console.log('currentGame:', this.props.selectedGame)
     const style={
-      border: "1px solid magenta",
+      // border: "1px solid teal",
       padding: "1rem",
       margin: "1rem"
     };
     return (
-      <div style={style}>Hello Current Game </div>
+      <div style={style}>
+      <h1>Played Session:</h1>
+      <h4>{this.props.selectedGame.id}</h4>
+      </div>
     )
   }
 
 }
 const mapStateToProps = ( state ) => {
   return {
-
+    selectedGame: state.selectedGame.playedGame
   }
 }
 const mapDispatchToProps = {

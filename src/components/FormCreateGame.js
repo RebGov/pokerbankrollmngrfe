@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 import compose from 'recompose/compose';
 //import classNames from 'classnames';
 import { withStyles } from '@material-ui/core/styles';
-import MenuItem from '@material-ui/core/MenuItem';
+// import MenuItem from '@material-ui/core/MenuItem';
 import TextField from '@material-ui/core/TextField';
 // import FormHelperText from '@material-ui/core/FormHelperText';
 // import FormControl from '@material-ui/core/FormControl';
@@ -40,7 +40,7 @@ const styles = theme => ({
 class FormCreateGame extends Component {
 
   render(){
-    const { classes } = this.props;
+    // const { classes } = this.props;
     const style={
       border: "1px solid green",
       padding: "1rem",
@@ -52,13 +52,12 @@ class FormCreateGame extends Component {
       <h4>Hello Create Played Game Form</h4>
         <form  onSubmit={this.handleSubmit}>
           <SelectGameLocation />
-        <br />
+
           <SelectGameName />
-        <br/>
+
           <SelectGameBlindsName />
-        <br/>
+        
           <SelectKillStatus />
-          <br/>
         <div >
           <TextField
           required
