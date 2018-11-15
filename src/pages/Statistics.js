@@ -10,21 +10,20 @@ import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import {Doughnut} from 'react-chartjs-2';
-import chipswithcards from '../images/chipswithcards.png'
-// import getProfit from '../actions/playedGameActions'
+
 const styles = theme => ({
   root: {
     ...theme.mixins.gutters(),
     flexGrow: 5,
     paddingTop: theme.spacing.unit * 5,
     paddingBottom: theme.spacing.unit * 5,
-    backgroundImage: `url(${chipswithcards})`,
+    backgroundImage: `url(${pokerRedBkrd})`,
     backgroundColor: '#BDC3C7',
     minHeight: '125vh',
     minWidth:'100vh',
     backgroundPosition: 'center',
     backgroundRepeat: 'no-repeat',
-    backgroundSize: '100vh',
+    backgroundSize: 'cover',
 
   },
   paperStyles:{
@@ -129,17 +128,18 @@ class Statistics extends Component {
   }
 
   render(){
-    console.log("statistics: ", this.props.isLoading)
-    const { classes } = this.props;
-    const data = {
-      datasets: [{
-        data: [this.numGamesWon(), this.numGamesLost()],
-        backgroundColor: [ '#9ECF98', '#CD474A']
-    }],
-    labels: [
-        'Wins',
-        'Losses'    ],
-    }
+
+    if(!this.props.playedGames) return <h1>Loading...</h1>
+      const { classes } = this.props;
+      const data = {
+        datasets: [{
+          data: [this.numGamesWon(), this.numGamesLost()],
+          backgroundColor: [ '#9ECF98', '#CD474A']
+      }],
+      labels: [
+          'Wins',
+          'Losses'    ],
+      }
 
     return ((this.props.playedGames == 0 || this.props.playedGames == undefined) ?  (
       <div className={classes.root}>
@@ -185,6 +185,7 @@ class Statistics extends Component {
           <Typography component="li">
             $ {this.dollarPerHour()} per Hour
           </Typography>
+            <Doughnut data={data}/ >
         </Paper>
 
         <Paper className={classes.paperStyles} elevation={3}>
@@ -221,9 +222,7 @@ class Statistics extends Component {
             Average Loss: ${this.averageLoss()}
           </Typography>
         </Paper>
-        <Paper className={classes.paperStyles}>
-          <Doughnut data={data}/ >
-        </Paper>
+
       </div>
     ))
   }

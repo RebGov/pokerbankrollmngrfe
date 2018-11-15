@@ -50,6 +50,7 @@ const styles = theme => ({
 
 
 class AllGames extends Component {
+
   converToHoursAndMintues = (incomingTime) => {
 
     if (incomingTime >= 60){
@@ -65,35 +66,44 @@ class AllGames extends Component {
       if (incomingTime >=0 && incomingTime<=10) {
         return "00h:0" + incomingTime +"m"
       }
-        return "00:"+ incomingTime+"m"
+        return "00h:"+ incomingTime+"m"
       }
   }
   render() {
-    console.log("AllGames",this.props.playedGames, this.props.history)
+    // console.log("AllGames",this.props.playedGames, this.props.history)
     const { classes } = this.props;
 
-    return ((this.props.playedGames === undefined || this.props.playedGames == 0) ?  (
+
+    if(this.props.playedGames === undefined || this.props.playedGames == 0){
+      return (
+        <div className={classes.root}>
+        <Paper className={classes.paperStyles} elevation={1}>
+          <Typography variant="h5" component="h5">No History to Show</Typography>
+        </Paper>
+        </div>
+      )
+    } else {
+
+      return (
       <div className={classes.root}>
-      <Paper className={classes.paperStyles} elevation={1}>
-        <Typography variant="h5" component="h5">No History to Show</Typography>
-      </Paper>
-      </div>
-    ): (
-      <div className={classes.root}>
-      <Paper className={classes.paperStyles} elevation={1}>
-        {this.props.playedGames.map( (game, index) => (
-          <div  key={game.id} onClick={e => this.props.selectOneGame(game.id, this.props.history)}>
-            # {index+1} | Poker Room: {game.game_location.poker_room} | Game: {game.game_name.game_title} | Blinds: {game.blinds_name.blinds} {game.kill_status.kill === "none"? (<b>|</b>):(<em>| KillPot: {game.kill_status.kill} | </em>)} {game.tournament === false ? (<em>Cash Game</em>) : (<em>Tournament</em>)}
-            <br/>
-              Start Date & Time: {game.start_date_time} - End Date & Time: {game.end_date_time} | Duration: {this.converToHoursAndMintues(game.minutes)}
-              <br/>
-              Buy In: ${game.buy_in} | Cash Out: ${game.cash_out} | {game.won_game === true ? (<b style={{color:"green"}}>${game.profit}</b>) : (<b style={{color :"red"}}>${game.profit}</b>) }
-            <hr/>
-          </div>
-            ))}
-            </Paper>
-      </div>
-    ))
+        <Paper className={classes.paperStyles} elevation={1}>
+          {this.props.playedGames.map( (game, index) => {
+            let startDate = new Date(game.start_date_time)
+            let endDate = new Date(game.end_date_time)
+            return (
+              <div  key={game.id} onClick={e => this.props.selectOneGame(game.id, this.props.history)}>
+                # {index+1} | Poker Room: {game.game_location.poker_room} | Game: {game.game_name.game_title} | Blinds: {game.blinds_name.blinds} {game.kill_status.kill === "none"? (<b>|</b>):(<em>| KillPot: {game.kill_status.kill} | </em>)} {game.tournament === false ? (<em>Cash Game</em>) : (<em>Tournament</em>)}
+                <br/>
+                  Start Date & Time: {startDate.toLocaleString()} - End Date & Time: {endDate.toLocaleString()} | Duration: {this.converToHoursAndMintues(game.minutes)}
+                  <br/>
+                  Buy In: ${game.buy_in} | Cash Out: ${game.cash_out} | {game.won_game === true ? (<b style={{color:"green"}}>${game.profit}</b>) : (<b style={{color :"red"}}>${game.profit}</b>) }
+                <hr/>
+              </div>
+            )})}
+              </Paper>
+        </div>
+      )
+    }
   }
 }
 

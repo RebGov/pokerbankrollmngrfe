@@ -106,13 +106,16 @@ export default function usersReducer(currentState, action) {
       .then( resp => resp.json())
       .then( payload => {
         if(!payload.error){
-        // action.history.push('/:user/history')
+
         //NEED info to refresh
         store.dispatch({ type: 'GET_USER_GAME_DATA', payload: payload, history: action.history})
+        action.history.push('/:user/history')
+        store.dispatch(getUserGameData())
+
       } else {
         store.dispatch({ type: 'DISPLAY_ERROR', payload: payload})
       }
-      action.history.push('/:user/history')
+
     })
   } else {
     console.log("End time must be after start time.")

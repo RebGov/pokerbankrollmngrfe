@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { withRouter} from 'react-router';
 import AllGames from '../components/AllGames'
 import { Link } from 'react-router-dom';
 import pokerRedBkrd from '../images/pokerRedBkrd.jpg'
-import blackNgreenChips from '../images/blackNgreenChips.jpg'
+// import blackNgreenChips from '../images/blackNgreenChips.jpg'
 import FilterBox from '../stylesProject/FilterBox';
 import PropTypes from 'prop-types';
 import compose from 'recompose/compose';
@@ -97,10 +98,7 @@ const mapStateToProps = ( state ) => {
 
 
   return {
-    // /allGameLocations: state.allGameLocations,
-    // allBlindsNames: state.allBlindsNames,
-    // allGameNames: state.allGameNames,
-    // gameFilters: state.gameFilters,
+
     playedGames: state.userPlayedGames,
     currentUser: state.currentUser
 
@@ -119,7 +117,7 @@ export default  compose(
   withStyles(styles, {
     name: 'GHistory',
   }),
-  connect(mapStateToProps, mapDispatchToProps))(GHistory);
+  connect(mapStateToProps, mapDispatchToProps))(withRouter(GHistory));
 
 // export default connect(mapStateToProps, mapDispatchToProps)(GHistory);
 // <AllGames />

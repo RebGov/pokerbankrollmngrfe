@@ -9,6 +9,7 @@ import { withStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 // import FormHelperText from '@material-ui/core/FormHelperText';
 // import FormControl from '@material-ui/core/FormControl';
+import pokerRedBkrd from '../images/pokerRedBkrd.jpg';
 import Button from '@material-ui/core/Button';
 import StartDateTime from '../stylesProject/StartDateTime';
 import EndDateTime from '../stylesProject/EndDateTime';
@@ -18,15 +19,18 @@ import SelectGameName from '../stylesProject/SelectGameName';
 import SelectKillStatus from '../stylesProject/SelectKillStatus';
 import {updateNewGame, createNewGame } from '../actions/userActions';
 
+
 const styles = theme => ({
+
   container: {
     display: 'flex',
     flexWrap: 'wrap',
+    marginLeft: theme.spacing.unit *10,
+    marginRight: theme.spacing.unit*10,
   },
   textField: {
     textAlign: "center",
-    // marginLeft: theme.spacing.unit,
-    // marginRight: theme.spacing.unit,
+
     width: 200,
   },
   dense: {
@@ -45,6 +49,7 @@ class FormCreateGame extends Component {
 
 
     return (
+
       <div style={styles.container}>
       <h4>Hello Create Played Game Form</h4>
         <form  onSubmit={this.handleSubmit}>
@@ -87,8 +92,7 @@ class FormCreateGame extends Component {
         <br/>
         </form>
         <Button variant="contained" color="primary" onClick={e => this.props.createNewGame(e, this.props.history)} >Submit New Game</Button>
-
-      </div>
+        </div>
     )
   }
 
