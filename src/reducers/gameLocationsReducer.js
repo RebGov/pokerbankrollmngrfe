@@ -1,4 +1,5 @@
-// import { store, defaultState } from '../store';
+// import { store } from '../store';
+// import { getUserGameData } from '../actions/userActions';
 
 export default function gameLocationReducer(currentState, action) {
   const newState = {...currentState}
@@ -11,6 +12,13 @@ export default function gameLocationReducer(currentState, action) {
       break;
       case 'UPDATE_CURRENT_LOCATION':
         newState.selectedGameLocation = { ...newState.selectedGameLocation, ...action.payload }
+      break;
+  
+
+      case 'SELECT_GAME_LOCATION':
+        newState.selectedGameLocation = {
+          ...newState.selectedGameLocation, ...action.payload
+        }
       break;
       default:
       break;

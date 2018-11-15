@@ -7,7 +7,8 @@ import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
-// import IconButton from '@material-ui/core/IconButton';
+import LibraryAddIcon from '@material-ui/icons/LibraryAdd';
+import IconButton from '@material-ui/core/IconButton';
 // import MenuIcon from '@material-ui/icons/Menu';
 
 
@@ -21,6 +22,7 @@ const styles = {
   grow: {
     flexGrow: 1,
   },
+
   menuButton: {
     marginLeft: -12,
     marginRight: 20,
@@ -39,10 +41,13 @@ function Header(props) {
             <MenuBar />
           </div>
           <Typography variant="h6" color="inherit" className={classes.grow}>
-            POKER BANKROLL APP
+            ANTE UP POKER BANKROLL SUITE
           </Typography>
           <Link style={{ textDecoration: 'none', color:'white' }} to={{pathname:'/login'} } >
           <Button color="inherit" >Login</Button>
+          </Link>
+          <Link style={{ textDecoration: 'none', color:'white'}} to={{pathname:'/:user/NewGame'}}>
+          <Button color='inherit'><LibraryAddIcon /></Button>
           </Link>
         </Toolbar>
       </AppBar>

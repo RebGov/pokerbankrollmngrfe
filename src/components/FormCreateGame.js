@@ -1,74 +1,92 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { withRouter } from 'react-router';
+import PropTypes from 'prop-types';
+import compose from 'recompose/compose';
+//import classNames from 'classnames';
+import { withStyles } from '@material-ui/core/styles';
+// import MenuItem from '@material-ui/core/MenuItem';
+import TextField from '@material-ui/core/TextField';
+// import FormHelperText from '@material-ui/core/FormHelperText';
+// import FormControl from '@material-ui/core/FormControl';
 import Button from '@material-ui/core/Button';
-// import DateTimePicker from 'material-ui-datetimepicker';
-// import DatePickerDialog from '@material-ui/DatePicker/DatePickerDialog'
-// import TimePickerDialog from '@material-ui/TimePicker/TimePickerDialog';
-// import StartDateTime from '../stylesProject/StartDateTime';
-// import EndDateTime from '../stylesProject/StartDateTime';
+import StartDateTime from '../stylesProject/StartDateTime';
+import EndDateTime from '../stylesProject/EndDateTime';
+import SelectGameLocation from '../stylesProject/SelectGameLocation';
+import SelectGameBlindsName from '../stylesProject/SelectGameBlindsName';
+import SelectGameName from '../stylesProject/SelectGameName';
+import SelectKillStatus from '../stylesProject/SelectKillStatus';
+import {updateNewGame, createNewGame } from '../actions/userActions';
+
+const styles = theme => ({
+  container: {
+    display: 'flex',
+    flexWrap: 'wrap',
+  },
+  textField: {
+    textAlign: "center",
+    // marginLeft: theme.spacing.unit,
+    // marginRight: theme.spacing.unit,
+    width: 200,
+  },
+  dense: {
+    marginTop: 19,
+  },
+  menu: {
+    width: 200,
+  },
+});
+
 
 class FormCreateGame extends Component {
+
   render(){
-    const style={
-      border: "1px solid green",
-      padding: "1rem",
-      margin: "1rem"
-    };
+    const { classes } = this.props;
+
+
     return (
-      <div style={style}>
+      <div style={styles.container}>
       <h4>Hello Create Played Game Form</h4>
+        <form  onSubmit={this.handleSubmit}>
+          <SelectGameLocation />
 
-        <form onSubmit={this.handleSubmit}>
-        <div>
-          <label> Select Location: </label>
-          <select value={console.log('value')} onChange={console.log("handleChange")}>
-            <option value="grapefruit">Grapefruit</option>
-            <option value="lime">Lime</option>
-            <option selected value="Location">Location</option>
-            <option value="mango">Mango</option>
-          </select>
-        </div>
-        <br />
-        <div>
-          <label> Select Game: </label>
-          <select value={console.log('value')} onChange={console.log("handleChange")}>
-            <option value="grapefruit">Grapefruit</option>
-            <option value="lime">Lime</option>
-            <option selected value="Game">Game</option>
-            <option value="mango">Mango</option>
-          </select>
+          <SelectGameName />
+
+          <SelectGameBlindsName />
+
+          <SelectKillStatus />
+        <div >
+          <TextField style={styles.textField}
+          required
+          id="standard-required"
+          label="Buy In: $"
+          defaultValue= ""
+          margin="normal"
+          onChange={e=>this.props.updateNewGame({buy_in: e.target.value })} type="integer"/>
         </div>
         <br/>
-        <div className="blinds_selector">
-        <label> Select Blinds: </label>
-          <select style={{color: 'primary'}} value={console.log('value')} onChange={console.log("handleChange")}>
-            <option value="Opt1">Opt1</option>
-            <option value="lime">Lime</option>
-            <option  selected value="Blinds">Blinds</option>
-            <option value="mango">Mango</option>
-          </select>
+        <div>
+        <StartDateTime style={styles.textField} updateNewGame={this.props.updateNewGame} value={this.props.newUserGame.start_date_time}/>
         </div>
         <br/>
         <div >
-          <label>Buy in: $ </label>
-          <input  type="integer"/>
+          <TextField
+          style={styles.textField}
+          required
+          id="standard-required"
+          label="Cash Out: $"
+          defaultValue= ""
+          margin="normal"
+          onChange={e=>this.props.updateNewGame({cash_out: e.target.value})}
+          type="integer"/>
         </div>
         <br/>
         <div>
-        
-        </div>
-        <br/>
-        <div >
-          <label>Cash out: $ </label>
-          <input  type="integer"/>
-        </div>
-        <br/>
-        <div>
-
+        <EndDateTime style={styles.textField} updateNewGame={this.props.updateNewGame} value={this.props.newUserGame.end_date_time} />
         </div>
         <br/>
         </form>
-        <Button variant="contained" color="primary" onClick={console.log('submit form')} >Submit New Game</Button>
+        <Button variant="contained" color="primary" onClick={e => this.props.createNewGame(e, this.props.history)} >Submit New Game</Button>
 
       </div>
     )
@@ -77,12 +95,24 @@ class FormCreateGame extends Component {
 }
 const mapStateToProps = ( state ) => {
   return {
-
+    currentUser: state.currentUser,
+    jwt: state.jwt,
+    newUserGame: state.newUserGame
   }
 }
 const mapDispatchToProps = {
 
+  updateNewGame: updateNewGame,
+  createNewGame: createNewGame
 
 }
+FormCreateGame.propTypes = {
+  classes: PropTypes.object.isRequired,
+};
+export default  compose(
+  withStyles(styles, {
+    name: 'FormCreateGame',
+  }),
+  connect(mapStateToProps, mapDispatchToProps))(withRouter(FormCreateGame));
 
-export default connect(mapStateToProps, mapDispatchToProps)(FormCreateGame);
+// export default connect(mapStateToProps, mapDispatchToProps)(FormCreateGame);

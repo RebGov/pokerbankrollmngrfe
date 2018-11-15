@@ -1,45 +1,49 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import { withStyles } from '@material-ui/core/styles';
-import TextField from '@material-ui/core/TextField';
-import moment from 'moment'
+import React, { Fragment, PureComponent } from 'react';
+import { DateTimePicker } from 'material-ui-pickers';
+import { connect } from 'react-redux'
+import {updateNewGame} from '../actions/userActions'
 
-const styles = theme => ({
-  container: {
-    display: 'flex',
-    flexWrap: 'wrap',
-  },
-  textField: {
-    marginLeft: theme.spacing.unit,
-    marginRight: theme.spacing.unit,
-    width: 200,
-  },
-});
+class StartDateTime extends PureComponent {
+  // state = {
+  //   start_date_time: new Date('2018-01-01T00:00:01.000Z'),
+  // }
+  //
+  // handleDateChange = (date) => {
+  //   debugger
+  //   this.setState({ start_date_time: date });
+  // }
 
-function StartDateTime(props) {
-  const { classes } = props;
-  // let currentDate = moment()
-  // let defaultDateTime = moment();
-  return (
 
-      <form className={classes.container} noValidate>
-        <TextField
-          id="datetime-local"
-          label="Start Date & Time"
-          type="datetime-local"
-          defaultValue="2018-11-01T10:00"
-          className={classes.textField}
-          InputLabelProps={{
-            shrink: true,
-          }}
-        />
-      </form>
+  render() {
+    // const { start_date_time } = this.state;
+ console.log(this.updateNewGame)
+    return (
+      <Fragment>
+        <div className="picker">
+          <DateTimePicker
+          value={this.props.value}
+          maxDate={new Date()}
+          onChange={date => this.props.updateNewGame({ start_date_time: date })}
+          label="Start Date Time"
+            showTodayButton
+          />
+        </div>
 
-  );
+      </Fragment>
+    );
+  }
 }
 
-StartDateTime.propTypes = {
-  classes: PropTypes.object.isRequired,
-};
+// const mapStateToProps = ( state ) => {
+//   // return {
+//   // start_date_time: state.newUserGame.start_date_time
+//   //
+//   // }
+// }
+const mapDispatchToProps = {
+  updateNewGame: updateNewGame
 
-export default withStyles(styles)(StartDateTime);
+}
+
+export default connect(null, mapDispatchToProps)(StartDateTime);
+// export default StartDateTime;
