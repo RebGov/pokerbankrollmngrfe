@@ -5,20 +5,23 @@ import compose from 'recompose/compose';
 import { withStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
-import pokerRedBkrd from '../images/pokerRedBkrd.jpg'
+import chipswithcards from '../images/chipswithcards.png'
+// import pokerRedBkrd from '../images/pokerRedBkrd.jpg'
 
 const styles = theme => ({
   root: {
     ...theme.mixins.gutters(),
     flexGrow: 5,
-    paddingTop: theme.spacing.unit * 10,
+    paddingTop: theme.spacing.unit * 2,
     paddingBottom: theme.spacing.unit * 2,
-    backgroundImage: `url(${pokerRedBkrd})`,
-    minHeight: '125vh',
+    backgroundImage: `url(${chipswithcards})`,
+    backgroundColor: '#BDC3C7',
+    minHeight: '120vh',
     minWidth:'100vh',
-    backgroundPosition: 'center',
+    backgroundPosition: 'bottom',
     backgroundRepeat: 'no-repeat',
-    backgroundSize: 'cover',
+
+    // backgroundSize: 'cover',
     // opacity: 0.8
     // textAlign: "center",
 
@@ -51,11 +54,10 @@ class Home extends Component {
 
     <div className={classes.root} >
     <Paper className={classes.paperStyles} elevation={1}>
-      <Typography style={{color:'#C41B0D'}} variant="h5" component="h3">
+      <Typography style={{color:'#C41B0D'}} variant="h6" component="h3">
       <div>
         <h1 style={{color: '#927E7C'}}>Welcome to Ante Up Poker Bankroll Suite</h1>
         <h4>Strategize your poker play based on your played game session history.</h4>
-        <p>Enter your buy in and cash out information.</p>
       </div>
 
       </Typography>

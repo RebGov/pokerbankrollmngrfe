@@ -39,6 +39,7 @@ const defaultState = {
   },
   currentUser: currentUser,
   userPlayedGames: [],
+  isLoading: true,
 
   newUserGame: {
     user_id: '',

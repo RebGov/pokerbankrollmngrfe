@@ -1,12 +1,16 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 import pokerRedBkrd from '../images/pokerRedBkrd.jpg'
 import FilterBox from '../stylesProject/FilterBox';
 import PropTypes from 'prop-types';
 import compose from 'recompose/compose';
 import { withStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
+import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
+import {Doughnut} from 'react-chartjs-2';
+import chipswithcards from '../images/chipswithcards.png'
 // import getProfit from '../actions/playedGameActions'
 const styles = theme => ({
   root: {
@@ -14,12 +18,13 @@ const styles = theme => ({
     flexGrow: 5,
     paddingTop: theme.spacing.unit * 5,
     paddingBottom: theme.spacing.unit * 5,
-    backgroundImage: `url(${pokerRedBkrd})`,
+    backgroundImage: `url(${chipswithcards})`,
+    backgroundColor: '#BDC3C7',
     minHeight: '125vh',
     minWidth:'100vh',
     backgroundPosition: 'center',
     backgroundRepeat: 'no-repeat',
-    backgroundSize: 'cover',
+    backgroundSize: '100vh',
 
   },
   paperStyles:{
@@ -32,10 +37,16 @@ const styles = theme => ({
     zIndex: -1,
     maxWidth: '50vh',
     rounded: 'square={false}',
+    color: theme.palette.text.secondary,
 
   },
   grow: {
     flexGrow: 1,
+  },
+  paper: {
+    padding: theme.spacing.unit * 2,
+    textAlign: 'center',
+    color: theme.palette.text.secondary,
   },
 });
 
@@ -47,6 +58,7 @@ class Statistics extends Component {
     return total
 
   }
+
   converToHoursAndMintues = (totalTime) => {
     let hours= this.totalTime() / 60
     let rhours = Math.floor(hours);
@@ -54,6 +66,7 @@ class Statistics extends Component {
     let rminutes = Math.round(minutes);
     return rhours + " hour(s) and " + rminutes + " minute(s)."
   }
+
   totalProfit = () => {
     let total =0
     total = this.props.playedGames.reduce( (prev, cur)=> prev + parseInt(cur.profit), 0)
@@ -110,17 +123,42 @@ class Statistics extends Component {
     let percentageWins = (this.numGamesLost() * 100)/this.totalGames()
     return percentageWins.toFixed(2)
   }
+  dollarPerHour = (totalProfit, totalTime) => {
+    let dollarPerHr = (this.totalProfit()/this.totalTime())*60
+    return dollarPerHr.toFixed(2)
+  }
 
   render(){
+    console.log("statistics: ", this.props.isLoading)
     const { classes } = this.props;
-    // console.log("Stats Page: ", this.props.playedGames)
-    return (
+    const data = {
+      datasets: [{
+        data: [this.numGamesWon(), this.numGamesLost()],
+        backgroundColor: [ '#9ECF98', '#CD474A']
+    }],
+    labels: [
+        'Wins',
+        'Losses'    ],
+    }
+
+    return ((this.props.playedGames == 0 || this.props.playedGames == undefined) ?  (
       <div className={classes.root}>
+      <Paper className={classes.paperStyles} elevation={1}>
+        <Typography variant="h5" component="h5">No Statistics to Show</Typography>
+        <Link style={{textDecoration:" none"}} to={{pathname: `/${localStorage.user_id}/NewGame`}}>
+          <Typography component="p">
+            Please Enter A Game Session.
+          </Typography>
+        </Link>
+      </Paper>
+      </div>
+    ): (
+      <div className={classes.root}>
+
         <Paper className={classes.paperStyles} elevation={1}>
           <Typography variant="h4" component="h2">
             Ante Up Statistics:
           </Typography>
-
           <Typography variant="h5" component="h5">
           Please Select Filters for Played Session Statistics:
           </Typography>
@@ -129,6 +167,7 @@ class Statistics extends Component {
           </Typography>
           <FilterBox />
         </Paper>
+
 
         <Paper className={classes.paperStyles} elevation={2}>
           <Typography variant="h5" component="h5">
@@ -143,7 +182,11 @@ class Statistics extends Component {
           <Typography component="li">
             Games Played: {this.totalGames()}
           </Typography>
+          <Typography component="li">
+            $ {this.dollarPerHour()} per Hour
+          </Typography>
         </Paper>
+
         <Paper className={classes.paperStyles} elevation={3}>
           <Typography variant="h5" component="h5">
             Won Games:
@@ -178,14 +221,18 @@ class Statistics extends Component {
             Average Loss: ${this.averageLoss()}
           </Typography>
         </Paper>
+        <Paper className={classes.paperStyles}>
+          <Doughnut data={data}/ >
+        </Paper>
       </div>
-    )
+    ))
   }
 
 }
 const mapStateToProps = ( state ) => {
   return {
-    playedGames: state.userPlayedGames.playedGames
+    playedGames: state.userPlayedGames.playedGames,
+    isLoading: state.isLoading
   }
 }
 const mapDispatchToProps = {

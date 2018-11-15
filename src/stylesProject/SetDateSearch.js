@@ -5,6 +5,10 @@ import { DatePicker } from 'material-ui-pickers';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
 import Button from '@material-ui/core/Button';
+import { selectYearDateSearch } from '../actions/userActions';
+import { selectMonthDateSearch } from '../actions/userActions';
+import { selectStartDateSearch } from '../actions/userActions';
+import { selectEndDateSearch} from '../actions/userActions';
 
 
 const styles = theme => ({
@@ -19,39 +23,44 @@ const styles = theme => ({
 });
 
 class SetDateSearch extends PureComponent {
-  // state = {
-  //   start_date_time: new Date('2018-01-01T00:00:01.000Z'),
-  // }
-  //
-  // handleDateChange = (date) => {
-  //   debugger
-  //   this.setState({ start_date_time: date });
-  // }
+
 
 
   render() {
-    // const { start_date_time } = this.state;
- console.log(this.updateNewGame)
+
     return (
       <Fragment>
       <div>
       <Button
         variant="contained" color="primary"
-        onclick={this.handleYear}
+        onClick={e=>{this.props.selectYearDateSearch(e)}}
       >Current Year</Button>
       <Button
         variant="contained" color="primary"
-        onclick={this.handleMonth}
+        onClick={e=>this.props.selectMonthDateSearch(e) }
       >Current Month</Button>
-      </div>
+
       <div className="picker">
-          <DateTimePicker
-          value={this.props.value}
+          <DatePicker
+          value={new Date()}
           maxDate={new Date()}
-          onChange={date => this.props.SelectDateSearch({ start_date_time: date })}
-          label="Start Date Time"
+          openToYearSelection={false}
+
+          onChange={date =>this.props.selectStartDateSearch(date)}
+          label="Start Date"
             showTodayButton
           />
+        </div>
+        <div className="picker">
+            <DatePicker
+            value={new Date()}
+            maxDate={new Date()}
+            openToYearSelection={false}
+          onChange={date => this.props.selectEndDateSearch( date)}
+            label="End Date"
+              showTodayButton
+            />
+          </div>
         </div>
       </Fragment>
     );
@@ -66,9 +75,11 @@ const mapStateToProps = ( state ) => {
 }
 const mapDispatchToProps= {
 
-  // updateNewGame: updateNewGame
+  selectYearDateSearch: selectYearDateSearch,
+  selectMonthDateSearch: selectMonthDateSearch,
+  selectStartDateSearch: selectStartDateSearch,
+  selectEndDateSearch: selectEndDateSearch
 
 }
 
 export default connect(null, mapDispatchToProps)(SetDateSearch);
-// export default StartDateTime;
