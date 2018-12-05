@@ -114,6 +114,12 @@ export function createNewGame(e, history){
     history: history
   })
 }
+export function editForm(e, history){
+  return({
+    type: 'EDIT_SELECTED_GAME',
+    history: history
+  })
+}
 export function logoutUser(){
   return ({
     type: 'LOGOUT_USER'

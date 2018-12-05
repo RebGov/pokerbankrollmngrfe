@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { withRouter } from 'react-router'
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import compose from 'recompose/compose';
@@ -14,7 +15,7 @@ import ListItemText from '@material-ui/core/ListItemText';
 import HomeIcon from '@material-ui/icons/Home';
 import MenuIcon from '@material-ui/icons/Menu';
 //import WatchIcon from '@material-ui/icons/Watch';
-// import MultilineChartIcon from '@material-ui/icons/MultilineChart';
+import MultilineChartIcon from '@material-ui/icons/MultilineChart';
 import AssignmentIcon from '@material-ui/icons/Assignment';
 import InsertChartIcon from '@material-ui/icons/InsertChart';
 import LibraryAddIcon from '@material-ui/icons/LibraryAdd';
@@ -22,14 +23,18 @@ import { logoutUser } from '../actions/userActions';
 
 
 const styles = {
-  padding: "1rem",
-  margin: "1rem",
-  backgroundColor: '#C1ADAB',
+  root:{
+    padding: "1rem",
+    margin: "1rem",
+    // backgroundColor: '#C1ADAB',
+  },
   list: {
     width: 250,
+    backgroundColor: '#C1ADAB',
   },
   fullList: {
     width: 'auto',
+    // backgroundColor: '#C1ABDAB',
   },
 };
 
@@ -48,7 +53,7 @@ class MenuBar extends Component {
     const { classes } = this.props;
 
     const sideList = (
-      <div className={classes.list} >
+      <div className={classes.fullList} >
         <h2>{this.props.currentUser.first_name}</h2>
         <h4>MENU</h4>
         <Divider />
@@ -84,6 +89,14 @@ class MenuBar extends Component {
             </ListItem>
           </Link>
         </List>
+        <List style={{backgroundColor: '#C1ADAB'}}>
+          <Link style={{textDecoration:" none"}} to={{pathname:'/:user/ChartPage'}}>
+            <ListItem button key={'ChartPage'} >
+              <ListItemIcon><MultilineChartIcon /></ListItemIcon>
+              <ListItemText primary={'ChartPage'} />
+            </ListItem>
+          </Link>
+        </List>
         <Divider />
         <List>
           <ListItem button key={'Log Out'} onClick={this.props.logoutUser}>
@@ -91,6 +104,8 @@ class MenuBar extends Component {
             <ListItemText primary={'Log Out'} />
           </ListItem>
         </List>
+
+
       </div>
     );
 
@@ -134,4 +149,4 @@ export default  compose(
   withStyles(styles, {
     name: 'MenuBar',
   }),
-  connect(mapStateToProps, mapDispatchToProps))(MenuBar);
+  connect(mapStateToProps, mapDispatchToProps))(withRouter(MenuBar));

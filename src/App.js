@@ -7,9 +7,10 @@ import SignUp from './components/SignUp';
 import GHistory from './pages/GHistory';
 import Home from './pages/Home';
 import AboutPage from './pages/AboutPage';
-import FormCreateGame from './components/FormCreateGame';
-import CurrentGame from './components/CurrentGame';
+import NewGamePage from './pages/NewGamePage';
 import Statistics from './pages/Statistics';
+import ChartPage from './pages/ChartPage';
+import CurrentGame from './components/CurrentGame';
 import PrivateRoute from './components/PrivateRoute';
 import Header from './containers/Header';
 
@@ -27,9 +28,9 @@ class App extends Component {
           <Switch>
             <Route path="/about" component={AboutPage}/>
             <PrivateRoute path="/:user/history" component={GHistory} />
-            <PrivateRoute path="/:user/NewGame"  component={FormCreateGame} />
-
+            <PrivateRoute path="/:user/NewGame"  component={NewGamePage} />
             <PrivateRoute path="/:user/Statistics" component={Statistics}/>
+            <PrivateRoute path="/:user/ChartPage" component={ChartPage} />
             <PrivateRoute path="/:user/:game" component={CurrentGame} />
             <Route path="/login" component={SignIn}/>
             <Route path='/createAccount' component={SignUp}/>

@@ -1,12 +1,13 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { withRouter} from 'react-router';
 import PropTypes from 'prop-types';
 import compose from 'recompose/compose';
 import { withStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
-// import chipswithcards from '../images/chipswithcards.png'
-import pokerRedBkrd from '../images/pokerRedBkrd.jpg'
+import pokerRedBkrd from '../images/pokerRedBkrd.jpg';
+import FormCreateGame from '../components/FormCreateGame';
 
 const styles = theme => ({
   root: {
@@ -28,7 +29,10 @@ const styles = theme => ({
   },
   paperStyles:{
     textAlign: "center",
+    marginLeft: "20vh",
     backgroundColor: '#C1ADAB',
+    backgroundPosition: 'center',
+    maxWidth: '30vh',
     paddingTop: theme.spacing.unit * 2,
     paddingBottom: theme.spacing.unit * 2,
     zIndex: -1,
@@ -40,53 +44,42 @@ const styles = theme => ({
 
 });
 
-class Home extends Component {
-  render() {
+class NewGamePage extends Component {
+  render(){
     const { classes } = this.props;
-    // const style={
-    //   // border: "1px solid teal",
-    //   padding: "1rem",
-    //   margin: "1rem"
-    // };
-  // console.log('HomePage: ',this.props.currentUser.id)
-  return (
 
-
-    <div className={classes.root} >
-    <Paper className={classes.paperStyles} elevation={1}>
-      <Typography style={{color:'#C41B0D'}} variant="h6" component="h3">
-      <div>
-        <h1 style={{color: '#927E7C'}}>Welcome to Ante Up Poker Bankroll Suite</h1>
-        <h4>Strategize your poker play based on your played game session history.</h4>
+    return (
+      <div className={classes.root}>
+        <Paper className={classes.paperStyles} elevation={1}>
+          <FormCreateGame />
+        </Paper>
       </div>
-
-      </Typography>
-
-    </Paper>
-  </div>
-
-
-
     )
   }
 }
-
 const mapStateToProps = ( state ) => {
+
+
   return {
-      jwt: state.jwt,
-      currentUser: state.currentUser.id
+
+
+    currentUser: state.currentUser
+
+
   }
 }
+
 const mapDispatchToProps = {
 
+
+
 }
-Home.propTypes = {
+NewGamePage.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
 export default  compose(
   withStyles(styles, {
-    name: 'Home',
+    name: 'NewGamePage',
   }),
-  connect(mapStateToProps, mapDispatchToProps))(Home);
-// export default connect(mapStateToProps, mapDispatchToProps)(Home);
+  connect(mapStateToProps, mapDispatchToProps))(withRouter(NewGamePage));

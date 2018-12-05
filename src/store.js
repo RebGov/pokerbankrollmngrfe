@@ -54,7 +54,13 @@ const defaultState = {
     tournament: false
   },
   selectedGame: {
-    playedGame:{}
+    playedGame:{
+      game_location:{},
+      blinds_name:{},
+      game_name:{},
+      kill_status:{},
+      notes:{}
+    }
   },
   selectedGameEmpty: true,
 

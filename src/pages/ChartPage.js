@@ -1,14 +1,18 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import {withRouter} from 'react-router';
 import { Link } from 'react-router-dom';
 import pokerRedBkrd from '../images/pokerRedBkrd.jpg'
 import FilterBox from '../stylesProject/FilterBox';
 import PropTypes from 'prop-types';
-import Button from '@material-ui/core/Button';
 import compose from 'recompose/compose';
 import { withStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
-import { createUser, updateNewUser } from '../actions/userActions'
+import Grid from '@material-ui/core/Grid';
+import Typography from '@material-ui/core/Typography';
+import {Line} from 'react-chartjs-2';
+
+
 
 const styles = theme => ({
   root: {
@@ -29,11 +33,12 @@ const styles = theme => ({
     backgroundPosition: 'center',
     textAlign: "center",
     backgroundColor: '#C1ADAB',
+    marginLeft: "20vh",
     // paddingRight: theme.spacing.unit * 25,
     paddingTop: theme.spacing.unit * 4,
     paddingBottom: theme.spacing.unit * 4,
     zIndex: -1,
-    maxWidth: '50vh',
+    maxWidth: '150vh',
     rounded: 'square={false}',
     color: theme.palette.text.secondary,
 
@@ -47,51 +52,67 @@ const styles = theme => ({
     color: theme.palette.text.secondary,
   },
 });
-class SignUp extends Component {
-  render() {
-    const { classes } = this.props;
 
-    return (
-      <div >
-        <h1>Sign Up</h1>
-        <div>
-          <label>Email: </label>
-          <input onChange={e => this.props.updateNewUser({ email: e.target.value })} type="email"/>
-        </div>
-        <div>
-          <label>First Name: </label>
-          <input onChange={e => this.props.updateNewUser({ first_name: e.target.value })} type="text"/>
-        </div>
-        <div>
-          <label>Last Name: </label>
-          <input onChange={e => this.props.updateNewUser({ last_name: e.target.value })} type="text"/>
-        </div>
-        <div>
-          <label>Password: </label>
-          <input onChange={e => this.props.updateNewUser({ password: e.target.value })} type="password"/>
-        </div>
-          <Button variant="contained" color="primary" onClick={this.props.createUser} >Submit</Button>
-          <br/>
-          <Link to="/login">Sign In</Link>
+
+
+
+class ChartPage extends Component {
+  profitForChart = () => {
+    console.log("profitFnc:", this.props.playedGames)
+    let total = 0
+    return this.props.playedGames.reverse().map( (game, index) => ({
+      x: index,
+      y: total += parseFloat(game.profit)
+    }))
+
+
+
+  }
+
+  render() {
+
+    if(!this.props.playedGames) return <h1>Loading...</h1>
+    const { classes } = this.props;
+    const data = {
+      datasets: [{
+        data: this.profitForChart(),
+        label: 'Profit'
+    }],
+    labels: this.props.playedGames.reverse().map( game => (new Date(game.start_date_time)).toLocaleDateString()),
+  }
+
+    return(
+      <div className={classes.root}>
+
+        <Paper className={classes.paperStyles} elevation={1}>
+          <Typography variant="h4" component="h2">
+            Played Game Chart
+            <br/>
+            <FilterBox />
+            <br/>
+            <Line data={data} />
+          </Typography>
+
+        </Paper>
       </div>
-    );
+    )
   }
 }
-const mapStateToProps = (state) => {
+const mapStateToProps = ( state ) => {
   return {
-
+    playedGames: state.userPlayedGames.playedGames,
+     isLoading: state.isLoading
   }
 }
 const mapDispatchToProps = {
-  updateNewUser: updateNewUser,
-  createUser: createUser
+
 }
-SignUp.propTypes = {
+ChartPage.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
 export default  compose(
   withStyles(styles, {
-    name: 'SignUp',
+    name: 'ChartPage',
   }),
-  connect(mapStateToProps, mapDispatchToProps))(SignUp);
+  connect(mapStateToProps, mapDispatchToProps))(withRouter(ChartPage));
