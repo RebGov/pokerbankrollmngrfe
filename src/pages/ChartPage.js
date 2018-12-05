@@ -78,7 +78,7 @@ class ChartPage extends Component {
         data: this.profitForChart(),
         label: 'Profit'
     }],
-    labels: this.props.playedGames.reverse().map( game => (new Date(game.start_date_time)).toLocaleDateString()),
+    labels: this.props.playedGames.map( game => (new Date(game.start_date_time)).toLocaleDateString()),
   }
 
     return(
