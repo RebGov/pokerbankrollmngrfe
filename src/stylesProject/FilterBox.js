@@ -1,4 +1,5 @@
 import React, { PureComponent } from 'react';
+import { connect } from 'react-redux'
 import PropTypes from 'prop-types';
 import Button from '@material-ui/core/Button';
 import { withStyles } from '@material-ui/core/styles';
@@ -6,20 +7,15 @@ import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogTitle from '@material-ui/core/DialogTitle';
-// import InputLabel from '@material-ui/core/InputLabel';
-// import Input from '@material-ui/core/Input';
-// import MenuItem from '@material-ui/core/MenuItem';
 import FormControl from '@material-ui/core/FormControl';
-// import Select from '@material-ui/core/Select';
+
 import SetKillStatusSearch from './SetKillStatusSearch';
 import SetGameLocationSearch from './SetGameLocationSearch';
 import SetGameNameSearch from './SetGameNameSearch';
 import SetGameBlindsNameSearch from './SetGameBlindsNameSearch';
 import SetDateSearch from './SetDateSearch';
-//import { setGameLocationSearch } from '../actions/gameLocationActions'
-// import { setGameNameSearch } from '../actions/gameNameActions';
-// import { setBlindsNameSearch } from '../actions/blindsNameActions';
-// import { setKillStatusSearch } from '../actions/killStatusActions';
+import { clearFilters } from '../actions/userActions';
+
 
 const styles = theme => ({
   container: {
@@ -55,6 +51,11 @@ handleClickOpen = () => {
   this.setState({ open:true });
 }
 
+cancel = () => {
+  this.props.clearFilters()
+  this.handleClose()
+}
+
   handleClose = () => {
      this.setState({ open: false });
   };
@@ -63,11 +64,6 @@ handleClickOpen = () => {
      // console.log("FilterBox:", this.props.allGameNames, this.props.allGameLocations)
     // debugger
     const { classes } = this.props;
-    // let locations = this.props.allGameLocations || []
-    // let gametypes = this.props.allGameNames || []
-    // let blindstype = this.props.allBlindsNames || []
-    // let killtypes = this.props.allKillStatuses || []
-
 
     return (
       <div>
@@ -105,7 +101,7 @@ handleClickOpen = () => {
             </DialogContent>
           <DialogActions>
           //clear all the items in the box?
-            <Button onClick={this.handleClose} color="primary">
+            <Button onClick={this.cancel} color="primary">
               Cancel
             </Button>
             <Button onClick={this.handleClose} color="primary">
@@ -133,10 +129,10 @@ function mapStateToProps(state)  {
 }
 
 const mapDispatchToProps = {
-
+  clearFilters: clearFilters
   // setGameLocationSearch: setGameLocationSearch
 
 }
 
 
-export default withStyles(styles)(FilterBox);
+export default withStyles(styles)(connect(mapStateToProps, mapDispatchToProps)(FilterBox));

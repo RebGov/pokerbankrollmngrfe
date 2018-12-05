@@ -53,7 +53,7 @@ class MenuBar extends Component {
         <h4>MENU</h4>
         <Divider />
         <List style={{backgroundColor: '#C1ADAB'}}>
-          <Link className="link" to={{pathname:'/home'}}>
+          <Link style={{textDecoration:" none"}} to={{pathname:'/home'}}>
             <ListItem button key={'Home'}  >
               <ListItemIcon><HomeIcon /></ListItemIcon>
               <ListItemText primary={'Home'} />
@@ -69,7 +69,7 @@ class MenuBar extends Component {
           </Link>
         </List>
         <List style={{backgroundColor: '#C1ADAB'}}>
-          <Link to={{pathname:`/:user/NewGame`}}>
+          <Link style={{textDecoration:" none"}} to={{pathname:`/:user/NewGame`}}>
             <ListItem button key={'New Game'} >
               <ListItemIcon><LibraryAddIcon /></ListItemIcon>
               <ListItemText primary={'New Game'} />
@@ -77,7 +77,7 @@ class MenuBar extends Component {
           </Link>
         </List>
         <List style={{backgroundColor: '#C1ADAB'}}>
-          <Link to={{pathname:'/:user/Statistics'}}>
+          <Link style={{textDecoration:" none"}} to={{pathname:'/:user/Statistics'}}>
             <ListItem button key={'Statistics'} >
               <ListItemIcon><InsertChartIcon /></ListItemIcon>
               <ListItemText primary={'Statistics'} />

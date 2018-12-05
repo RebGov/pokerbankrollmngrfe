@@ -72,6 +72,7 @@ export default function usersReducer(currentState, action) {
     store.dispatch(getAllLocationsList())
     store.dispatch(getAllKillStatusList())
     store.dispatch(getUserGameData())
+    newState.isLoading = false
   break;
   case 'GET_USER_PROFILE':
     newState.currentUser = { ...newState.currentUser, ...action.payload}
@@ -124,10 +125,11 @@ export default function usersReducer(currentState, action) {
     newState.displayError = action.payload
   break;
   case 'LOGOUT_USER':
+    newState.isLoading = true
     localStorage.clear()
     newState = defaultState
     newState.jwt = false
-    newState.user_id = ""
+    newState.user_id = 0
 
     // newState.isLoggedIn = false
     // action.history.push('/')
@@ -136,7 +138,25 @@ export default function usersReducer(currentState, action) {
     case 'SELECTED_GAME':
     newState.selectedGame = {...newState.selectedGame, ...action.payload }
     newState.selectedGameEmpty = false
+    // fetch() here?
     break;
+    case 'CLEAR_FILTERS':
+    newState.gameFilters =  { blinds_name_id: '',
+      kill_status_id: '',
+      game_location_id: '',
+      game_name_id: '',
+      start_date: '',
+      end_date: ''
+    }
+    store.dispatch(getUserGameData())
+    break;
+    // case 'SET_DATE_START_FILTER_SEARCH':
+    // newState.gameFilters = action.payload
+    // break;
+    // case 'SET_DATE_END_FILTER_SEARCH':
+    // newState.gameFilters = action.payload
+    // break;
+
   default:
 
   break;
