@@ -2,8 +2,10 @@ import React, { Component } from 'react';
 // import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { BrowserRouter, Switch, Route, } from  'react-router-dom'
-import SignIn from './components/SignIn';
-import SignUp from './components/SignUp';
+// import SignIn from './components/SignIn';
+import LogInPage from './pages/LogInPage';
+// import SignUp from './components/SignUp';
+import CreateAccountPage from './pages/CreateAccountPage';
 import GHistory from './pages/GHistory';
 import Home from './pages/Home';
 import AboutPage from './pages/AboutPage';
@@ -32,8 +34,8 @@ class App extends Component {
             <PrivateRoute path="/:user/Statistics" component={Statistics}/>
             <PrivateRoute path="/:user/ChartPage" component={ChartPage} />
             <PrivateRoute path="/:user/:game" component={CurrentGame} />
-            <Route path="/login" component={SignIn}/>
-            <Route path='/createAccount' component={SignUp}/>
+            <Route path="/login" component={LogInPage}/>
+            <Route path='/createAccount' component={CreateAccountPage}/>
 
             <Route path="/" component={Home}/>
           </Switch>
