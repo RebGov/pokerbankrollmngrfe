@@ -46,18 +46,18 @@ export function getUserGameData(payload){
     let filters = {}
     filters = payload
     let no_search_params = true
-    console.log("****", filters)
+    // console.log("****", filters)
       for (let [key, value] of Object.entries(filters)){
-        console.log(filters, key, value)
+        // console.log(filters, key, value)
         if (params_list.includes(key) &&  value!== ""){
           no_search_params = false
-          console.log("no search",no_search_params)
+          // console.log("no search",no_search_params)
           addUrlString+=`&${key}=${value}`
         }
       }
     } else {
   }
-  console.log("addUrlString:", addUrlString)
+  // console.log("addUrlString:", addUrlString)
   return dispatch => {
     let base_url=`http://localhost:3000/api/v1/played_games?user_id=${localStorage.user_id}`
      // Code to fill in search parms
@@ -131,24 +131,32 @@ export function clearFilters(){
   })
 }
 export function selectStartDateSearch(incomingDate){
+  // console.log("startDateI", incomingDate)
   let date = incomingDate.toDate()
+
+  // console.log("StartDate", date)
   date.setHours(0)
   date.setMinutes(0)
   date.setSeconds(0)
   let start_date = date
+  start_date = start_date.toISOString()
+  // console.log(start_date)
+
   return({
     type:'UPDATE_GAME_FILTERS',
     payload: {start_date: start_date}
   })
 }
 export function selectEndDateSearch(incomingDate){
-  console.log("endDate", incomingDate)
+  // console.log("endDateI", incomingDate)
   let date = incomingDate.toDate()
-  console.log(date)
+
   date.setHours(23)
   date.setMinutes(59)
   date.setSeconds(59)
   let end_date = date
+  end_date = end_date.toISOString()
+  // end_date = end_date.toJson()
   return({
     type:'UPDATE_GAME_FILTERS',
     payload: {end_date: end_date}
@@ -157,6 +165,7 @@ export function selectEndDateSearch(incomingDate){
 export function selectYearDateSearch(e){
   e.preventDefault()
   let date = new Date()
+  console.log("Year", date)
   date.setMonth(0)
   date.setDate(1)
   date.setHours(0)

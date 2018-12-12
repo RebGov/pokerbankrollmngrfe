@@ -9,7 +9,7 @@ import { withStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 // import FormHelperText from '@material-ui/core/FormHelperText';
 // import FormControl from '@material-ui/core/FormControl';
-import pokerRedBkrd from '../images/pokerRedBkrd.jpg';
+// import pokerRedBkrd from '../images/pokerRedBkrd.jpg';
 import Button from '@material-ui/core/Button';
 import StartDateTime from '../stylesProject/StartDateTime';
 import EndDateTime from '../stylesProject/EndDateTime';

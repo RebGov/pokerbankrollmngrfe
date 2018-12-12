@@ -6,6 +6,7 @@ import { BrowserRouter, Switch, Route, } from  'react-router-dom'
 import LogInPage from './pages/LogInPage';
 // import SignUp from './components/SignUp';
 import CreateAccountPage from './pages/CreateAccountPage';
+import FormUpdateGame from './components/FormUpdateGame';
 import GHistory from './pages/GHistory';
 import Home from './pages/Home';
 import AboutPage from './pages/AboutPage';
@@ -34,6 +35,7 @@ class App extends Component {
             <PrivateRoute path="/:user/Statistics" component={Statistics}/>
             <PrivateRoute path="/:user/ChartPage" component={ChartPage} />
             <PrivateRoute path="/:user/:game" component={CurrentGame} />
+            <PrivateRoute path="/:user/:game/update" component={FormUpdateGame} />
             <Route path="/login" component={LogInPage}/>
             <Route path='/createAccount' component={CreateAccountPage}/>
 
@@ -58,10 +60,3 @@ const mapStateToProps = ( state ) => {
 }
 
 export default connect(mapStateToProps)(App);
-//
-// <div>
-//   {this.props.isLoggedIn ? ('Is Logged In') : ('Is Logged Out')}
-// </div>
-// App.propTypes = {
-//     isLoggedIn: PropTypes.bool.isRequired
-// };

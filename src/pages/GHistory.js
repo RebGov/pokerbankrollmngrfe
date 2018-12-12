@@ -11,9 +11,9 @@ import compose from 'recompose/compose';
 import { withStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
-import { setGameLocationSearch } from '../actions/gameLocationActions'
-import { setGameNameSearch } from '../actions/gameNameActions';
-import { setBlindsNameSearch } from '../actions/blindsNameActions';
+// import { setGameLocationSearch } from '../actions/gameLocationActions'
+// import { setGameNameSearch } from '../actions/gameNameActions';
+// import { setBlindsNameSearch } from '../actions/blindsNameActions';
 
 const styles = theme => ({
   root: {
@@ -118,11 +118,3 @@ export default  compose(
     name: 'GHistory',
   }),
   connect(mapStateToProps, mapDispatchToProps))(withRouter(GHistory));
-
-// export default connect(mapStateToProps, mapDispatchToProps)(GHistory);
-// <AllGames />
-// <GameTable />
-// <SetGameLocationSearch />
-// <SetGameNameSearch />
-// <SetGameBlindsNameSearch />
-// <SetKillStatusSearch />

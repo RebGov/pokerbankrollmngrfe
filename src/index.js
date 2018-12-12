@@ -12,8 +12,8 @@ import {Provider } from 'react-redux';
 // import thunk from 'redux-thunk';
 import {store} from './store';
 // import rootReducer from './reducers/rootReducer';
-import Paper from '@material-ui/core/Paper';
-import PropTypes from 'prop-types';
+// import Paper from '@material-ui/core/Paper';
+// import PropTypes from 'prop-types';
 import chipsBlackBgrd from './images/chipsBlackBgrd.jpg'
 
 const theme = createMuiTheme({

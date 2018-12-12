@@ -1,5 +1,23 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { withRouter } from 'react-router';
+import PropTypes from 'prop-types';
+import compose from 'recompose/compose';
+//import classNames from 'classnames';
+import { withStyles } from '@material-ui/core/styles';
+// import MenuItem from '@material-ui/core/MenuItem';
+import TextField from '@material-ui/core/TextField';
+// import FormHelperText from '@material-ui/core/FormHelperText';
+// import FormControl from '@material-ui/core/FormControl';
+import pokerRedBkrd from '../images/pokerRedBkrd.jpg';
+import Button from '@material-ui/core/Button';
+import StartDateTime from '../stylesProject/StartDateTime';
+import EndDateTime from '../stylesProject/EndDateTime';
+import SelectGameLocation from '../stylesProject/SelectGameLocation';
+import SelectGameBlindsName from '../stylesProject/SelectGameBlindsName';
+import SelectGameName from '../stylesProject/SelectGameName';
+import SelectKillStatus from '../stylesProject/SelectKillStatus';
+import {updateNewGame, createNewGame } from '../actions/userActions';
 
 class FormUpdateGame extends Component {
   render(){
@@ -10,7 +28,7 @@ class FormUpdateGame extends Component {
     };
     return (
       <div style={style}>
-      <h4>Hello Update Played Game Form</hr>
+      <h4>Hello Update Played Game Form</h4>
 
               <form onSubmit={this.handleSubmit}>
               <div>

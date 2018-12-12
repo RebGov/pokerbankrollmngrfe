@@ -7,7 +7,7 @@ import PropTypes from 'prop-types';
 import compose from 'recompose/compose';
 import { withStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
-import Grid from '@material-ui/core/Grid';
+// import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 import {Doughnut} from 'react-chartjs-2';
@@ -77,7 +77,7 @@ class Statistics extends Component {
   }
   numGamesWon = () => {
     let wonCount = 0
-    let wonGames = this.props.playedGames.map(game => {
+    this.props.playedGames.map(game => {
       if (game.won_game === true){
         wonCount += 1
       }
