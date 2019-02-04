@@ -51,7 +51,8 @@ class FormCreateGame extends Component {
     return (
 
       <div style={styles.container}>
-      <h4>Hello Create Played Game Form</h4>
+      <h1>New Game Session</h1>
+      <h4>Please add your recently played poker game session here:</h4>
         <form  onSubmit={this.handleSubmit}>
           <SelectGameLocation />
 
