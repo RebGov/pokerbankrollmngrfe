@@ -57,7 +57,9 @@ class Home extends Component {
       <Typography style={{color:'#C41B0D'}} variant="h6" component="h3">
       <div>
         <h1 style={{color: '#927E7C'}}>Welcome to Ante Up Poker Bankroll Suite</h1>
-        <h4>Strategize your poker play based on your played game session history.</h4>
+        <h4>Strategize your poker play based on your played game session history using statistics and charts.</h4>
+        <p>NOT A GAMING SITE</p>
+        <p>Ante Up Poker Bankroll Suite is similar to a bank ledger; recording the time in and out, as well as, gains or losses of an individual poker player's played game sessions. After signing in, a poker player would need to manually record his/her recently played game session data by using the "add(+)" or "New Game" options found in the menu or page heading.</p>
       </div>
 
       </Typography>
