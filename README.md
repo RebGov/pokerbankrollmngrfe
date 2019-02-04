@@ -26,16 +26,25 @@
   - location (poker room)
   - blind structure
   - kill-pot status (full/half/none)
-  - date game played
+  - date game played choices:
+    - Current Month
+    - Current Year
+    - Start Date and End Date
+  - History of Games filtered are sorted in Descending order by Date game played
 
 * Dates & Time Manipulations used to modify minutes of play to HH:MM format
 * Calendars selectors used for inputing date and time and filtering date ranges: "Date and time picker" from "material-ui-pickers" library.
 
-  
 * Current Deliverables:
   - Creating and persisting: user account
   - Creating and persisitng: game types, game location (poker room), blind structures, kill statuses
   - Creating and persisiting: user entry of game data
+  
+* Changes in progress:
+ - Filter Date Search BY Month: working on solution for end date to not be hard coded for 31st
+ - Chart.js Line graph visual monetary flow over time 
+ - Adding Edit and Delete options for selected game
+ - Adding Previous month/year options
 
 * Future Deliverables:
   - Tournament Game Data storage and statistics
