@@ -57,7 +57,6 @@ export function getUserGameData(payload){
       }
     } else {
   }
-  // console.log("addUrlString:", addUrlString)
   return dispatch => {
     let base_url=`http://localhost:3000/api/v1/played_games?user_id=${localStorage.user_id}`
      // Code to fill in search parms
@@ -96,6 +95,7 @@ export function selectOneGame(gameId, history){
     .then(history.push(`/${localStorage.user_id}/CurrentGame`))
   }
 }
+
 export function updateNewGame(gameAttributes){
   return ({
     type: 'UPDATE_NEW_GAME',
@@ -199,6 +199,7 @@ export function selectMonthDateSearch(e){
   date.setSeconds(0)
   let start_date = date
   start_date = date.toJSON()
+  //DO: FIX date to end on end of month not "31"  - current does not allow for changing month end dates. May need a switch statement ... need further research on dates 
   date = new Date()
   date.setDate(31)
   date.setHours(23)
