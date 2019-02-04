@@ -8,7 +8,7 @@ import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 import LibraryAddIcon from '@material-ui/icons/LibraryAdd';
-import IconButton from '@material-ui/core/IconButton';
+// import IconButton from '@material-ui/core/IconButton';
 // import MenuIcon from '@material-ui/icons/Menu';
 
 
@@ -43,8 +43,9 @@ function Header(props) {
           <Typography variant="h6" color="inherit" className={classes.grow}>
             ANTE UP POKER BANKROLL SUITE
           </Typography>
+
           <Link style={{ textDecoration: 'none', color:'white' }} to={{pathname:'/login'} } >
-          <Button color="inherit" >Login</Button>
+            <Button color="inherit" >Login</Button>
           </Link>
           <Link style={{ textDecoration: 'none', color:'white'}} to={{pathname:'/:user/NewGame'}}>
           <Button color='inherit'><LibraryAddIcon /></Button>

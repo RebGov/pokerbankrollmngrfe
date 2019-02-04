@@ -106,7 +106,6 @@ export default function usersReducer(currentState, action) {
       .then( resp => resp.json())
       .then( payload => {
         if(!payload.error){
-
         //NEED info to refresh
         store.dispatch({ type: 'GET_USER_GAME_DATA', payload: payload, history: action.history})
         action.history.push('/:user/history')
@@ -121,9 +120,32 @@ export default function usersReducer(currentState, action) {
     console.log("End time must be after start time.")
   }
   break;
-  case 'RENDER_HISTORY_PAGE':
-  // action.history.push('/:user/history')
+  case 'EDIT_SELECTED_GAME':
+    newState.selectedUserGame.user_id = newState.currentUser.id
+    if (newState.newUserGame.start_date_time < newState.newUserGame.end_date_time) {
+      fetch(`http://localhost:3000/api/v1/played_games/gameId`, {
+        method: 'PATCH',
+        headers:{
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
+        },
+        body: JSON.stringify(newState.selectedUserGame)
+        })
+        .then( resp => resp.json())
+        .then( payload => {
+          if(!payload.error){
+          store.dispatch({ type: 'GET_USER_GAME_DATA', payload: payload, history: action.history})
+          action.history.push('/:user/history')
+          store.dispatch(getUserGameData())
+        } else {
+          store.dispatch({ type: 'DISPLAY_ERROR', payload: payload})
+        }
+      })
+    } else {
+      console.log("End time must be after start time.")
+    }
   break;
+
   case 'DISPLAY_ERROR':
     newState.displayError = action.payload
   break;
@@ -133,17 +155,12 @@ export default function usersReducer(currentState, action) {
     newState = defaultState
     newState.jwt = false
     newState.user_id = 0
-
-    // newState.isLoggedIn = false
-    // action.history.push('/')
-    //redirect to home page
-    break;
-    case 'SELECTED_GAME':
+  break;
+  case 'SELECTED_GAME':
     newState.selectedGame = {...newState.selectedGame, ...action.payload }
     newState.selectedGameEmpty = false
-    // fetch() here?
-    break;
-    case 'CLEAR_FILTERS':
+  break;
+  case 'CLEAR_FILTERS':
     newState.gameFilters =  { blinds_name_id: '',
       kill_status_id: '',
       game_location_id: '',
@@ -152,16 +169,8 @@ export default function usersReducer(currentState, action) {
       end_date: ''
     }
     store.dispatch(getUserGameData())
-    break;
-    // case 'SET_DATE_START_FILTER_SEARCH':
-    // newState.gameFilters = action.payload
-    // break;
-    // case 'SET_DATE_END_FILTER_SEARCH':
-    // newState.gameFilters = action.payload
-    // break;
-
+  break;
   default:
-
   break;
   }//end switch
   return newState

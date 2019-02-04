@@ -9,7 +9,7 @@ import { withStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 // import FormHelperText from '@material-ui/core/FormHelperText';
 // import FormControl from '@material-ui/core/FormControl';
-import pokerRedBkrd from '../images/pokerRedBkrd.jpg';
+// import pokerRedBkrd from '../images/pokerRedBkrd.jpg';
 import Button from '@material-ui/core/Button';
 import StartDateTime from '../stylesProject/StartDateTime';
 import EndDateTime from '../stylesProject/EndDateTime';
@@ -51,7 +51,8 @@ class FormCreateGame extends Component {
     return (
 
       <div style={styles.container}>
-      <h4>Hello Create Played Game Form</h4>
+      <h1>New Game Session</h1>
+      <h4>Please add your recently played poker game session here:</h4>
         <form  onSubmit={this.handleSubmit}>
           <SelectGameLocation />
 

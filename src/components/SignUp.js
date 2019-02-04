@@ -10,50 +10,14 @@ import { withStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import { createUser, updateNewUser } from '../actions/userActions'
 
-const styles = theme => ({
-  root: {
-    ...theme.mixins.gutters(),
-    flexGrow: 5,
-    paddingTop: theme.spacing.unit * 5,
-    paddingBottom: theme.spacing.unit * 5,
-    backgroundImage: `url(${pokerRedBkrd})`,
-    backgroundColor: '#BDC3C7',
-    minHeight: '125vh',
-    minWidth:'100vh',
-    backgroundPosition: 'center',
-    backgroundRepeat: 'no-repeat',
-    backgroundSize: 'cover',
 
-  },
-  paperStyles:{
-    backgroundPosition: 'center',
-    textAlign: "center",
-    backgroundColor: '#C1ADAB',
-    // paddingRight: theme.spacing.unit * 25,
-    paddingTop: theme.spacing.unit * 4,
-    paddingBottom: theme.spacing.unit * 4,
-    zIndex: -1,
-    maxWidth: '50vh',
-    rounded: 'square={false}',
-    color: theme.palette.text.secondary,
-
-  },
-  grow: {
-    flexGrow: 1,
-  },
-  paper: {
-    padding: theme.spacing.unit * 2,
-    textAlign: 'center',
-    color: theme.palette.text.secondary,
-  },
-});
 class SignUp extends Component {
   render() {
     const { classes } = this.props;
 
     return (
       <div >
-        <h1>Sign Up</h1>
+        <h1>Create Account</h1>
         <div>
           <label>Email: </label>
           <input onChange={e => this.props.updateNewUser({ email: e.target.value })} type="email"/>
@@ -90,8 +54,4 @@ SignUp.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-export default  compose(
-  withStyles(styles, {
-    name: 'SignUp',
-  }),
-  connect(mapStateToProps, mapDispatchToProps))(SignUp);
+export default connect(mapStateToProps, mapDispatchToProps)(SignUp);

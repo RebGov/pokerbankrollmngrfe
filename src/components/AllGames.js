@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import {withRouter} from 'react-router'
-import Button from '@material-ui/core/Button';
-import pokerRedBkrd from '../images/pokerRedBkrd.jpg'
+// import Button from '@material-ui/core/Button';
+// import pokerRedBkrd from '../images/pokerRedBkrd.jpg'
 import { Link } from 'react-router-dom';
+import Button from '@material-ui/core/Button';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import compose from 'recompose/compose';
@@ -70,15 +71,23 @@ class AllGames extends Component {
       }
   }
   render() {
-    // console.log("AllGames",this.props.playedGames, this.props.history)
+    console.log("AllGames",this.props.playedGames)
     const { classes } = this.props;
 
 
-    if(this.props.playedGames === undefined || this.props.playedGames == 0){
+    if(this.props.playedGames == 0 || this.props.playedGames == undefined){
       return (
         <div className={classes.root}>
         <Paper className={classes.paperStyles} elevation={1}>
           <Typography variant="h5" component="h5">No History to Show</Typography>
+          <Typography component="p">
+            Please select different filters or
+          </Typography>
+          <Link style={{textDecoration:" none"}} to={{pathname: `/${localStorage.user_id}/NewGame`}}>
+            <Button>
+              select to enter a new game session.
+            </Button>
+            </Link>
         </Paper>
         </div>
       )
@@ -130,11 +139,7 @@ export default  compose(
 
 // export default connect(mapStateToProps, mapDispatchToProps)(withRouter(AllGames));
 
-// array.sort(function(a, b) {
-//     a = new Date(a.dateModified);
-//     b = new Date(b.dateModified);
-//     return a>b ? -1 : a<b ? 1 : 0;
-// });
+
 // Notes:
 // <ul>
 //   {game.notes.map(note => (

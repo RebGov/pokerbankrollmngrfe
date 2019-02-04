@@ -79,16 +79,19 @@ class CurrentGame extends Component {
             <Typography variant="h5" component="h5">
               Selected Played Game Session:
             </Typography>
+            <hr/>
             <h4>Poker Room: {this.props.game.game_location.poker_room
             }</h4>
-            <h4>Game: {this.props.game.game_name.game_title}| Blinds: {this.props.game.blinds_name.blinds} | Kill: {this.props.game.kill_status.kill}</h4>
-            <h4>Start Date & Time: {startDate.toLocaleString()} - End Date & Time {endDate.toLocaleString()}</h4>
+            <h4>Game: {this.props.game.game_name.game_title} | Blinds: {this.props.game.blinds_name.blinds} | Kill: {this.props.game.kill_status.kill}</h4>
+            <h4>Start Date & Time: {startDate.toLocaleString()}</h4>
+            <h4>End Date & Time {endDate.toLocaleString()}</h4>
             <h4>Play Duration: {this.converToHoursAndMintues(this. props.game.minutes)}</h4>
-            <h4>Buy In: ${this.props.game.buy_in} | Cash Out: ${this.props.game.cash_out} | </h4>
+            <h4>Buy In: ${this.props.game.buy_in} | Cash Out: ${this.props.game.cash_out} </h4>
             <h4>{this.props.game.won_game === true ? (<b style={{color:"green"}}>${this.props.game.profit}</b>) : (<b style={{color :"red"}}>${this.props.game.profit}</b>) } </h4>
             <br/>
-        
-            <Button disabled className={classes.button} variant="contained" color="primary">Edit</Button>
+
+            <Button className={classes.button} variant="contained" color="primary">Edit</Button>
+            <hr/>
         </Paper>
       </div>
     )

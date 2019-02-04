@@ -7,8 +7,9 @@ import PropTypes from 'prop-types';
 import compose from 'recompose/compose';
 import { withStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
-import Grid from '@material-ui/core/Grid';
+// import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
+import Button from '@material-ui/core/Button';
 import {Doughnut} from 'react-chartjs-2';
 
 const styles = theme => ({
@@ -76,7 +77,7 @@ class Statistics extends Component {
   }
   numGamesWon = () => {
     let wonCount = 0
-    let wonGames = this.props.playedGames.map(game => {
+    this.props.playedGames.map(game => {
       if (game.won_game === true){
         wonCount += 1
       }
@@ -145,10 +146,14 @@ class Statistics extends Component {
       <div className={classes.root}>
       <Paper className={classes.paperStyles} elevation={1}>
         <Typography variant="h5" component="h5">No Statistics to Show</Typography>
+        <FilterBox />
+        <Typography component="p">
+          Please select different filters or
+        </Typography>
         <Link style={{textDecoration:" none"}} to={{pathname: `/${localStorage.user_id}/NewGame`}}>
-          <Typography component="p">
-            Please Enter A Game Session.
-          </Typography>
+          <Button>
+            select to enter a new game session.
+          </Button>
         </Link>
       </Paper>
       </div>
@@ -163,7 +168,7 @@ class Statistics extends Component {
           Please Select Filters for Played Session Statistics:
           </Typography>
           <Typography component="p">
-          If filters not selected, statitics will display for all played sessions.
+          If filters not selected, statitics will display for all played sessions. Please note: Filters selected and not cleared out under History or Charts will remain in effect.
           </Typography>
           <FilterBox />
         </Paper>

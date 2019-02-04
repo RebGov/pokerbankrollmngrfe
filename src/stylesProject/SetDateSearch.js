@@ -27,6 +27,7 @@ class SetDateSearch extends PureComponent {
 
 
   render() {
+    console.log("SetDateSearch: ", this.props.gameFilters.start_date, this.props.gameFilters.end_date)
 
     return (
       <Fragment>
@@ -42,7 +43,7 @@ class SetDateSearch extends PureComponent {
 
       <div className="picker">
           <DatePicker
-          value={new Date()}
+          value={this.props.gameFilters.start_date}
           maxDate={new Date()}
           openToYearSelection={false}
 
@@ -53,10 +54,10 @@ class SetDateSearch extends PureComponent {
         </div>
         <div className="picker">
             <DatePicker
-            value={new Date()}
+            value={this.props.gameFilters.end_date}
             maxDate={new Date()}
             openToYearSelection={false}
-          onChange={date => this.props.selectEndDateSearch( date)}
+            onChange={date => this.props.selectEndDateSearch(date)}
             label="End Date"
               showTodayButton
             />

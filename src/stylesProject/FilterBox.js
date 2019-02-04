@@ -33,34 +33,38 @@ class FilterBox extends PureComponent {
     super(props);
     this.state={
       open: false,
-      age: '',
       selectedDate: new Date(),
     }
   }
 
 
-    handleDateChange = date => {
-      this.setState({ selectedDate: date });
-    };
+  handleDateChange = date => {
+    this.setState({ selectedDate: date });
+  };
 
   handleChange = name => event => {
      this.setState({ [name]: Number(event.target.value) });
   };
 
-handleClickOpen = () => {
-  this.setState({ open:true });
-}
+  handleClickOpen = () => {
+    this.setState({ open:true });
+  }
 
-cancel = () => {
-  this.props.clearFilters()
-  this.handleClose()
-}
+  cancel = () => {
+    this.props.clearFilters()
+    this.handleClose()
+  }
 
   handleClose = () => {
      this.setState({ open: false });
   };
-//** check: if 'NONE' is selected; should stay blank, so all will be grabbed for that field.
+  // doFilterOk = () => {
+  //   this.props.useFilters()
+  //   this.handleClose()
+  // } This to wait to filter until 'ok' is selected
+
   render() {
+    console.log("FilterBox: ", this. props.gameFilters)
      // console.log("FilterBox:", this.props.allGameNames, this.props.allGameLocations)
     // debugger
     const { classes } = this.props;
@@ -79,7 +83,7 @@ cancel = () => {
               <form className={classes.container}>
               <FormControl
                 className={classes.formControl}>
-                <SetDateSearch />
+                <SetDateSearch gameFilters={this.props.gameFilters} />
                 </FormControl>
                 <FormControl
                   className={classes.formControl}>
@@ -100,9 +104,8 @@ cancel = () => {
               </form>
             </DialogContent>
           <DialogActions>
-          //clear all the items in the box?
             <Button onClick={this.cancel} color="primary">
-              Cancel
+              CLEAR FILTERS
             </Button>
             <Button onClick={this.handleClose} color="primary">
               Ok
@@ -120,6 +123,7 @@ FilterBox.propTypes = {
 function mapStateToProps(state)  {
   return {
 
+    gameFilters: state.gameFilters
     // allGameLocations: state.allGameLocations,
     // allBlindsNames: state.allBlindsNames,
     // allGameNames: state.allGameNames,
