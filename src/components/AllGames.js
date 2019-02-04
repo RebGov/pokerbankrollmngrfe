@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import {withRouter} from 'react-router'
 // import Button from '@material-ui/core/Button';
 // import pokerRedBkrd from '../images/pokerRedBkrd.jpg'
-// import { Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
+import Button from '@material-ui/core/Button';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import compose from 'recompose/compose';
@@ -79,6 +80,14 @@ class AllGames extends Component {
         <div className={classes.root}>
         <Paper className={classes.paperStyles} elevation={1}>
           <Typography variant="h5" component="h5">No History to Show</Typography>
+          <Typography component="p">
+            Please select different filters or
+          </Typography>
+          <Link style={{textDecoration:" none"}} to={{pathname: `/${localStorage.user_id}/NewGame`}}>
+            <Button>
+              select to enter a new game session.
+            </Button>
+            </Link>
         </Paper>
         </div>
       )
