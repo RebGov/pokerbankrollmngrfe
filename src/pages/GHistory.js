@@ -82,7 +82,7 @@ class GHistory extends Component {
           </Typography>
           <FilterBox />
           <Typography>
-            If no filters selected, entire history will display.
+            If no filters selected, entire history will display. Please note: Filters selected and not cleared out under Statistics or Charts will remain in effect.
           </Typography>
         </Paper>
 
