@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import {withRouter} from 'react-router';
 import { Link } from 'react-router-dom';
+import Button from '@material-ui/core/Button';
 import pokerRedBkrd from '../images/pokerRedBkrd.jpg'
 import FilterBox from '../stylesProject/FilterBox';
 import PropTypes from 'prop-types';
@@ -57,6 +58,10 @@ const styles = theme => ({
 
 
 class ChartPage extends Component {
+  /*
+  ISSUE: Chart currently reverses everytime refreshed or reloaded - so sometimes dates are backwards order.
+  Ideas to fix: 1) do own api call for the data just for the line chart; using filters in place and sort ascending. 2) continue working on solution for only the one fetch for the data.... maybe put out a question on GitHub for help.
+  */
   profitForChart = () => {
     console.log("profitFnc:", this.props.playedGames)
     let total = 0
@@ -80,15 +85,39 @@ class ChartPage extends Component {
     }],
     labels: this.props.playedGames.map( game => (new Date(game.start_date_time)).toLocaleDateString()),
   }
-
-    return(
+    if(this.props.playedGames == 0 || this.props.playedGames == undefined){
+      return (
+        <div className={classes.root}>
+        <Paper className={classes.paperStyles} elevation={1}>
+          <Typography variant="h5" component="h5">No Played Game Session History for Cumulative Chart</Typography>
+          <FilterBox />
+          <Typography component="p">
+            Please select different filters or
+          </Typography>
+          <Link style={{textDecoration:" none"}} to={{pathname: `/${localStorage.user_id}/NewGame`}}>
+            <Button>
+              select to enter a new game session.
+            </Button>
+            </Link>
+        </Paper>
+        </div>
+      )
+    } else {
+      return(
       <div className={classes.root}>
 
         <Paper className={classes.paperStyles} elevation={1}>
           <Typography variant="h4" component="h2">
-            Played Game Chart
-            <br/>
+            Played Game Sessions Cumulative Chart
+            <hr/>
+            <Typography variant="h5" component="h5">
+              Please Select Filters for Chart:
+            </Typography>
+            <Typography component="p">
+              If filters not selected, statitics will display for all played sessions. Please note: Filters selected and not cleared out under History or Statistics will remain in effect.
+            </Typography>
             <FilterBox />
+
             <br/>
             <Line data={data} />
           </Typography>
@@ -96,6 +125,7 @@ class ChartPage extends Component {
         </Paper>
       </div>
     )
+  }
   }
 }
 const mapStateToProps = ( state ) => {
