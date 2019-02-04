@@ -40,11 +40,11 @@
   - Creating and persisitng: game types, game location (poker room), blind structures, kill statuses
   - Creating and persisiting: user entry of game data
   
-* Changes in progress:
- - Filter Date Search BY Month: working on solution for end date to not be hard coded for 31st
- - Chart.js Line graph visual monetary flow over time 
- - Adding Edit and Delete options for selected game
- - Adding Previous month/year options
+* Changes in Progress:
+  - Filter Date Search BY Month: working on solution for end date to not be hard coded for 31st
+  - Chart.js Line graph visual monetary flow over time 
+  - Adding Edit and Delete options for selected game
+  - Adding Previous month/year options
 
 * Future Deliverables:
   - Tournament Game Data storage and statistics
