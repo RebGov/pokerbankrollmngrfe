@@ -168,7 +168,7 @@ class Statistics extends Component {
           Please Select Filters for Played Session Statistics:
           </Typography>
           <Typography component="p">
-          If filters not selected, statitics will display for all played sessions.
+          If filters not selected, statitics will display for all played sessions. Please note: Filters selected and not cleared out under History or Charts will remain in effect.
           </Typography>
           <FilterBox />
         </Paper>
