@@ -105,7 +105,7 @@ class FilterBox extends PureComponent {
             </DialogContent>
           <DialogActions>
             <Button onClick={this.cancel} color="primary">
-              Cancel
+              CLEAR FILTERS
             </Button>
             <Button onClick={this.handleClose} color="primary">
               Ok
