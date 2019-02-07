@@ -1,5 +1,5 @@
 //UserActions these are sent to reducers
-import moment from 'moment';
+// import moment from 'moment';
 export function updateNewUser(userAttributes){
   return ({
     type: 'UPDATE_NEW_USER',
@@ -130,6 +130,12 @@ export function clearFilters(){
     type:'CLEAR_FILTERS'
   })
 }
+
+// export function markPlayedGamesReversed(){
+//   return({
+//     type:'MARK_PLAYED_GAME_REVERSED'
+//   })
+// }
 export function selectStartDateSearch(incomingDate){
   // console.log("startDateI", incomingDate)
   let date = incomingDate.toDate()
@@ -199,7 +205,7 @@ export function selectMonthDateSearch(e){
   date.setSeconds(0)
   let start_date = date
   start_date = date.toJSON()
-  //DO: FIX date to end on end of month not "31"  - current does not allow for changing month end dates. May need a switch statement ... need further research on dates 
+  //DO: FIX date to end on end of month not "31"  - current does not allow for changing month end dates. May need a switch statement ... need further research on dates
   date = new Date()
   date.setDate(31)
   date.setHours(23)

@@ -58,6 +58,7 @@ export default function usersReducer(currentState, action) {
   break;
   case 'GET_USER_GAME_DATA':
     newState.userPlayedGames = { ...newState.userPlayedGames, ...action.payload }
+    newState.isChartLoaded = false
   break;
   case 'LOGIN_USER':
     newState.currentUser = action.payload.user
@@ -168,8 +169,12 @@ export default function usersReducer(currentState, action) {
       start_date: '',
       end_date: ''
     }
+    // newState.isChartLoaded = false;
     store.dispatch(getUserGameData())
   break;
+  // case 'MARK_PLAYED_GAME_REVERSED':
+  //   newState.isChartLoaded = true;
+  // break;
   default:
   break;
   }//end switch

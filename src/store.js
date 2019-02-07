@@ -40,6 +40,7 @@ const defaultState = {
   currentUser: currentUser,
   userPlayedGames: [],
   isLoading: true,
+  // isChartLoaded: false,
 
   newUserGame: {
     user_id: '',
