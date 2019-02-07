@@ -9,9 +9,10 @@ import PropTypes from 'prop-types';
 import compose from 'recompose/compose';
 import { withStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
-import Grid from '@material-ui/core/Grid';
+// import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import {Line} from 'react-chartjs-2';
+// import {markPlayedGamesReversed} from '../actions/userActions';
 
 
 
@@ -58,21 +59,16 @@ const styles = theme => ({
 
 
 class ChartPage extends Component {
-  /*
-  ISSUE: Chart currently reverses everytime refreshed or reloaded - so sometimes dates are backwards order.
-  Ideas to fix: 1) do own api call for the data just for the line chart; using filters in place and sort ascending. 2) continue working on solution for only the one fetch for the data.... maybe put out a question on GitHub for help.
-  */
-  profitForChart = () => {
+  // fixed issue of chart constantly refreshing and flipping dates by adding a .slice() to line 66 and a .slice().reverse() to line 82.
+  profitForChart = (props) => {
     console.log("profitFnc:", this.props.playedGames)
     let total = 0
-    return this.props.playedGames.reverse().map( (game, index) => ({
+    return this.props.playedGames.slice().reverse().map( (game, index) => ({
       x: index,
       y: total += parseFloat(game.profit)
     }))
-
-
-
   }
+
 
   render() {
 
@@ -81,9 +77,9 @@ class ChartPage extends Component {
     const data = {
       datasets: [{
         data: this.profitForChart(),
-        label: 'Profit'
+        label: 'PROFIT $'
     }],
-    labels: this.props.playedGames.map( game => (new Date(game.start_date_time)).toLocaleDateString()),
+    labels: this.props.playedGames.slice().reverse().map( game => (new Date(game.start_date_time)).toLocaleDateString()),
   }
     if(this.props.playedGames == 0 || this.props.playedGames == undefined){
       return (
@@ -131,10 +127,11 @@ class ChartPage extends Component {
 const mapStateToProps = ( state ) => {
   return {
     playedGames: state.userPlayedGames.playedGames,
-     isLoading: state.isLoading
+    isLoading: state.isLoading,
   }
 }
 const mapDispatchToProps = {
+
 
 }
 ChartPage.propTypes = {
