@@ -142,7 +142,7 @@ class Statistics extends Component {
           'Losses'    ],
       }
 
-    return ((this.props.playedGames == 0 || this.props.playedGames == undefined) ?  (
+    return ((this.props.playedGames === 0 || this.props.playedGames === undefined) ?  (
       <div className={classes.root}>
       <Paper className={classes.paperStyles} elevation={1}>
         <Typography variant="h5" component="h5">No Statistics to Show</Typography>

@@ -75,7 +75,7 @@ class AllGames extends Component {
     const { classes } = this.props;
 
 
-    if(this.props.playedGames == 0 || this.props.playedGames == undefined){
+    if(this.props.playedGames === 0 || this.props.playedGames === undefined){
       return (
         <div className={classes.root}>
         <Paper className={classes.paperStyles} elevation={1}>

@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import {withRouter} from 'react-router'
 import Button from '@material-ui/core/Button';
 import pokerRedBkrd from '../images/pokerRedBkrd.jpg'
-import { Link } from 'react-router-dom';
+//import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import compose from 'recompose/compose';
 import { withStyles } from '@material-ui/core/styles';

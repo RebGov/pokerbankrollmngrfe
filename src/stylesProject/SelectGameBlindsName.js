@@ -2,7 +2,7 @@ import React, {  Component } from 'react';
 import { connect } from 'react-redux';
 import compose from 'recompose/compose';
 import { withStyles } from '@material-ui/core/styles';
-import PropTypes from 'prop-types';
+//import PropTypes from 'prop-types';
 import MenuItem from '@material-ui/core/MenuItem';
 import Select from '@material-ui/core/Select';
 import FormHelperText from '@material-ui/core/FormHelperText';
@@ -49,7 +49,7 @@ class SelectGameBlindsName extends Component {
           inputProps={{
             id: 'blinds-required',
           }}
-          className={classes.selectEmpty}>
+          className4={classes.selectEmpty}>
           <MenuItem value="" disabled selected>Select Blinds</MenuItem>
             {selections.map(blindsName => (
               <MenuItem key={blindsName.id} value={blindsName.id}>{blindsName.blinds}</MenuItem>
@@ -57,7 +57,7 @@ class SelectGameBlindsName extends Component {
             </Select>
               <FormHelperText>Required</FormHelperText>
             </FormControl>
-      
+
       </div>
     )
   }

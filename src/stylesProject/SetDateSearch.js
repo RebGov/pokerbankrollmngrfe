@@ -2,8 +2,8 @@ import React, { Fragment, PureComponent } from 'react';
 // import { DateTimePicker } from 'material-ui-pickers';
 import { connect } from 'react-redux'
 import { DatePicker } from 'material-ui-pickers';
-import FormControl from '@material-ui/core/FormControl';
-import Select from '@material-ui/core/Select';
+//import FormControl from '@material-ui/core/FormControl';
+//import Select from '@material-ui/core/Select';
 import Button from '@material-ui/core/Button';
 import { selectYearDateSearch } from '../actions/userActions';
 import { selectMonthDateSearch } from '../actions/userActions';
@@ -11,16 +11,16 @@ import { selectStartDateSearch } from '../actions/userActions';
 import { selectEndDateSearch} from '../actions/userActions';
 
 
-const styles = theme => ({
-  container: {
-    display: 'flex',
-    flexWrap: 'wrap',
-  },
-  formControl: {
-    margin: theme.spacing.unit,
-    minWidth: 120,
-  },
-});
+// const styles = theme => ({
+//   container: {
+//     display: 'flex',
+//     flexWrap: 'wrap',
+//   },
+//   formControl: {
+//     margin: theme.spacing.unit,
+//     minWidth: 120,
+//   },
+// });
 
 class SetDateSearch extends PureComponent {
 
@@ -68,12 +68,12 @@ class SetDateSearch extends PureComponent {
   }
 }
 
-const mapStateToProps = ( state ) => {
-  return {
+// const mapStateToProps = ( state ) => {
+//   return {
+//
+// }
 
-}
-
-}
+// }
 const mapDispatchToProps= {
 
   selectYearDateSearch: selectYearDateSearch,

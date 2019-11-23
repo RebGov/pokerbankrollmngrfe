@@ -58,7 +58,7 @@ class GHistory extends Component {
       const { classes } = this.props;
 
 
-    return ((this.props.playedGames === undefined && this.props.playedGames == 0) ?  (
+    return ((this.props.playedGames === undefined && this.props.playedGames === 0) ?  (
       <div className={classes.paperStyles}  >
         <Paper className={classes.paperStyles} elevation={1}>
           <Typography style={{color:'#C41B0D'}} variant="h5" component="h3">

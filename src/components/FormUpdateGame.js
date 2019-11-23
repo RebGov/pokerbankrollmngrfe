@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router';
-import PropTypes from 'prop-types';
+//import PropTypes from 'prop-types';
 import compose from 'recompose/compose';
 //import classNames from 'classnames';
 import { withStyles } from '@material-ui/core/styles';
@@ -9,7 +9,7 @@ import { withStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 // import FormHelperText from '@material-ui/core/FormHelperText';
 // import FormControl from '@material-ui/core/FormControl';
-import pokerRedBkrd from '../images/pokerRedBkrd.jpg';
+//import pokerRedBkrd from '../images/pokerRedBkrd.jpg';
 import Button from '@material-ui/core/Button';
 import StartDateTime from '../stylesProject/StartDateTime';
 import EndDateTime from '../stylesProject/EndDateTime';
@@ -44,7 +44,7 @@ const styles = theme => ({
 
 class FormUpdateGame extends Component {
   render(){
-    const { classes } = this.props;
+    //const { classes } = this.props;
     return (
       <div style={styles.container}>
       <h4>Hello Create Played Game Form</h4>

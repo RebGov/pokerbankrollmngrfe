@@ -8,19 +8,19 @@
   - Type of Game
   - Blinds Structure,
   - Kill Pot Status (auto set at 'None')
-  - Calculations completed in Rails back-end before persisting user entry are: 
+  - Calculations completed in Rails back-end before persisting user entry are:
     - Total minutes played
-    - Profit of entry, and 
-    - Whether game won or lost. 
-  
+    - Profit of entry, and
+    - Whether game won or lost.
+
 * The following statistics are preformed using the above persisting user inputs with filter capabilities for specific game type statistic:
   - total profit/loss
   - duration of game play
-  - rate of win/loss over time played 
+  - rate of win/loss over time played
   - total games played
   - wins vs losses and displayed using chart.js doughnut graph
   - Chart.js line graph used to visualize monetary flow over time.
-  
+
 * RESTful API requests to Rails backe-end gives the user maximum ability to see statistics of user entry history, SQL queries filter through the database using any or all of the following options:
   - game type
   - location (poker room)
@@ -39,10 +39,10 @@
   - Creating and persisting: user account
   - Creating and persisitng: game types, game location (poker room), blind structures, kill statuses
   - Creating and persisiting: user entry of game data
-  
+
 * Changes in Progress:
   - Filter Date Search BY Month: working on solution for end date to not be hard coded for 31st
-  - Chart.js Line graph visual monetary flow over time 
+  - Chart.js Line graph visual monetary flow over time
   - Adding Edit and Delete options for selected game
   - Adding Previous month/year options
 
@@ -53,7 +53,7 @@
 
 **Systems, Configurations and Dependencies**
 
-  * NPM Create-React-app 
+  * NPM Create-React-app
   * React.js
   * React-Router.js
   * Redux.js
@@ -61,4 +61,4 @@
   * Chart.js
   * Material-UI Libraries
 
-Please email me for any further questions: becci.govert@gmail.com. 
+Please email me for any further questions: becci.govert@gmail.com.

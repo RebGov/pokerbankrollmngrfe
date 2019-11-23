@@ -42,7 +42,7 @@ class SelectGameName extends Component {
       inputProps={{
         id: 'gametype-required',
       }}
-      className={classes.selectEmpty}
+      className2={classes.selectEmpty}
     >
     <MenuItem value="" disabled selected>Select Game</MenuItem>
       {selections.map(gameName => (

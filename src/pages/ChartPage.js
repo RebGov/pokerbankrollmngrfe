@@ -81,7 +81,7 @@ class ChartPage extends Component {
     }],
     labels: this.props.playedGames.slice().reverse().map( game => (new Date(game.start_date_time)).toLocaleDateString()),
   }
-    if(this.props.playedGames == 0 || this.props.playedGames == undefined){
+    if(this.props.playedGames === 0 || this.props.playedGames === undefined){
       return (
         <div className={classes.root}>
         <Paper className={classes.paperStyles} elevation={1}>

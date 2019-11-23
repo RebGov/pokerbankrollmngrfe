@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import {withRouter} from 'react-router';
-import { Link } from 'react-router-dom';
+//import { Link } from 'react-router-dom';
 import pokerRedBkrd from '../images/pokerRedBkrd.jpg'
-import FilterBox from '../stylesProject/FilterBox';
+//import FilterBox from '../stylesProject/FilterBox';
 import PropTypes from 'prop-types';
-import Button from '@material-ui/core/Button';
+//import Button from '@material-ui/core/Button';
 import compose from 'recompose/compose';
 import { withStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
@@ -56,7 +56,7 @@ class LogInPage extends Component {
     return(
       <div className={classes.root}>
       <Paper className={classes.paperStyles} elevation={1}>
-        
+
         <SignIn />
       </Paper>
       </div>

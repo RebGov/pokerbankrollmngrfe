@@ -41,7 +41,7 @@ class SelectKillStatus extends Component {
           inputProps={{
             id: 'killpot-required',
           }}
-          className={classes.selectEmpty}>
+          className1={classes.selectEmpty}>
             <MenuItem value="" disabled selected>Select Kill</MenuItem>
             {selections.map(killStatus => (
             <MenuItem key={killStatus.id} value={killStatus.id}>{killStatus.kill}</MenuItem>

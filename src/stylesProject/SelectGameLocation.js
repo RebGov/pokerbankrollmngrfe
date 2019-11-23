@@ -42,7 +42,7 @@ class SelectGameLocation extends Component {
             inputProps={{
               id: 'location-required',
             }}
-            className={classes.selectEmpty}
+            className3={classes.selectEmpty}
           >
           <MenuItem value="" disabled selected>Select Location</MenuItem>
           {selections.map(location => (
